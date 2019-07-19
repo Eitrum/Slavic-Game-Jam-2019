@@ -11,4 +11,4 @@ Armin Johansson
 Leo Toivio
 Sebastian Broström
 
-Team motto - Everything is awesome!
+Team motto - Everything is awesome! Everything is cool when you're part of our team!
