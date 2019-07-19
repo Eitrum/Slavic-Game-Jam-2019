@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549f8692500da4eaf8e85e58216bd704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
   seedPrefab: {fileID: 2898505159013187308, guid: 97b5b8c0fca044fe3acb9ed6dff02ee4,
     type: 3}
   characterPrefab: {fileID: 6173939114200320581, guid: b0bcd06f3c4424ef0b27d34a3751e8d0,
@@ -51,3 +52,4 @@ MonoBehaviour:
     type: 3}
   seedSettings: {fileID: 11400000, guid: 7db804c2dde274b2e97102a970ee6487, type: 2}
   vineSettings: {fileID: 11400000, guid: a85b3c51d6ea140e4be1027e9402f16b, type: 2}
+  shootSettings: {fileID: 11400000, guid: 33cec6c88d07945138082d113f70d06b, type: 2}
