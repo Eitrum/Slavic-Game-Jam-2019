@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8eefa620a879415bb6d6028a0b09b7a, type: 3}
   m_Name: SeedSettings
   m_EditorClassIdentifier: 
-  velocityMultiplier: 150
+  velocityMultiplier: 100
