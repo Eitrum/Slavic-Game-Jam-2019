@@ -11,6 +11,7 @@ public class Entry : MonoBehaviour
     private readonly List<Vine> vines = new List<Vine>();
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
+    private readonly List<SpawnCharacterRequest> spawnCharacterRequests = new List<SpawnCharacterRequest>();
 
     public List<Transform> spawnPoints;
     public Camera cam;
@@ -32,25 +33,27 @@ public class Entry : MonoBehaviour
     private VineSystem vineSystem;
     private PlayerSystem playerSystem;
     private PlayerInputSystem playerInputSystem;
+    private CharacterSpawnSystem characterSpawnSystem;
     
     void Start()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; ++i)
         {
-            Transform spawnPoint = spawnPoints[i];
-            Character character = Instantiate(characterPrefab, spawnPoint.position, spawnPoint.rotation);
-            characters.Add(character);
-            Player player = new Player
+            players.Add(new Player
             {
-                possesedCharacter = character,
                 playerIndex = i
-            };
-            players.Add(player);
-            targetGroup.AddMember(character.transform, 1f, 1f);
+            });
+            spawnCharacterRequests.Add(new SpawnCharacterRequest
+            {
+                spawnTimer = 0f,
+                playerIndex = i
+            });
         }
+
+        characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue, cam.transform);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
     }
@@ -62,6 +65,7 @@ public class Entry : MonoBehaviour
 
     void Update()
     {
+        characterSpawnSystem.Tick();
         playerInputSystem.Tick();
         playerSystem.Tick();
         seedFiringSystem.Tick();
