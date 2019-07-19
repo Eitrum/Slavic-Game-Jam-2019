@@ -72,7 +72,7 @@ public sealed class VineSystem
         // Scale vines
         foreach (var vine in vines)
         {
-            vine.transform.localScale = Vector3.Lerp(vine.transform.localScale, Vector3.one * vineSettings.endScale, Time.deltaTime);
+            vine.transform.localScale = Vector3.Lerp(vine.transform.localScale, Vector3.one * vineSettings.endScale, (Time.time - vine.spawnTimeStamp) / vineSettings.growDuration);
         }
     }
 
@@ -80,6 +80,7 @@ public sealed class VineSystem
     {
         Vine vine = Object.Instantiate(vinePrefab, position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
         vine.transform.localScale = vineSettings.startScale * Vector3.one;
+        vine.spawnTimeStamp = Time.time;
         vines.Add(vine);
     }
 }
