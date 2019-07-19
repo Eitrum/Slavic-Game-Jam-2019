@@ -51,6 +51,7 @@ public sealed class CharacterSpawnSystem
     {
         Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)].position;
         Character character = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
+        character.playerIndex = playerIndex;
         foreach (var player in players)
         {
             if (player.playerIndex == playerIndex)

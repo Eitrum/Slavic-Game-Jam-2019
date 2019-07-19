@@ -50,8 +50,7 @@ public sealed class VineSystem
                 Character character = collision.GetComponentInParent<Character>();
                 characters.Remove(character);
                 Vector3 position = character.transform.position;
-                Object.Destroy(character.gameObject);
-
+                
                 spawnCharacterRequests.Add(new SpawnCharacterRequest
                 {
                     spawnTimer = 1.5f,
@@ -60,6 +59,8 @@ public sealed class VineSystem
 
                 // Spawn vine at death.
                 vinesToSpawn.Add(position);
+
+                Object.DestroyImmediate(character.gameObject);
             }
         }
 
