@@ -37,14 +37,16 @@ public class Entry : MonoBehaviour
             Transform spawnPoint = spawnPoints[i];
             Character character = Instantiate(characterPrefab, spawnPoint.position, spawnPoint.rotation);
             characters.Add(character);
-            Player player = new Player();
-            player.possesedCharacter = character;
-            player.playerIndex = i;
+            Player player = new Player
+            {
+                possesedCharacter = character,
+                playerIndex = i
+            };
             players.Add(player);
         }
         characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
     }
