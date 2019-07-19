@@ -11,7 +11,8 @@ public sealed class VineSystem
     private readonly VineSettings vineSettings;
     private readonly List<Character> characters;
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
-    
+
+    private const float RAYCAST_DISTANCE = 1.5f;
 
     public VineSystem(
         Vine vinePrefab,
@@ -33,40 +34,61 @@ public sealed class VineSystem
     public void Tick()
     {
         // Spawn vines
-        foreach (var impact in seedImpactQueue)
         {
-            SpawnVine(impact.position);
-        }
-
-        seedImpactQueue.Clear();
-
-        int layerMask = LayerMask.GetMask("Players");
-        var vinesToSpawn = new List<Vector3>();
-        foreach (var vine in vines)
-        {
-            var collisions = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x / 2, layerMask);
-            foreach (var collision in collisions)
+            int layerMask = LayerMask.GetMask("Vines");
+            foreach (var impact in seedImpactQueue)
             {
-                Character character = collision.GetComponentInParent<Character>();
-                characters.Remove(character);
-                Vector3 position = character.transform.position;
-                
-                spawnCharacterRequests.Add(new SpawnCharacterRequest
+                bool hasReachedEnd = false;
+                Vector3 spawnPoint = Vector3.zero;
+                Vector3 raycastDirection = impact.direction;
+                Vector3 raycastOrigin = impact.position;
+                while (!hasReachedEnd)
                 {
-                    spawnTimer = 1.5f,
-                    playerIndex = character.playerIndex
-                });
-
-                // Spawn vine at death.
-                vinesToSpawn.Add(position);
-
-                Object.DestroyImmediate(character.gameObject);
+                    if (Physics.Raycast(raycastOrigin, raycastDirection, RAYCAST_DISTANCE, layerMask))
+                    {
+                        raycastOrigin += raycastDirection * RAYCAST_DISTANCE;
+                    }
+                    else
+                    {
+                        hasReachedEnd = true;
+                    }
+                }
+                spawnPoint = raycastOrigin + raycastDirection * RAYCAST_DISTANCE;
+                SpawnVine(spawnPoint);
             }
+            seedImpactQueue.Clear();
         }
 
-        foreach (var position in vinesToSpawn)
         {
-            SpawnVine(position);
+            int layerMask = LayerMask.GetMask("Players");
+            var vinesToSpawn = new List<Vector3>();
+            foreach (var vine in vines)
+            {
+                var collisions = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x / 2, layerMask);
+                foreach (var collision in collisions)
+                {
+                    Character character = collision.GetComponentInParent<Character>();
+                    characters.Remove(character);
+                    Vector3 position = character.transform.position;
+
+                    spawnCharacterRequests.Add(new SpawnCharacterRequest
+                    {
+                        spawnTimer = 1.5f,
+                        playerIndex = character.playerIndex
+                    });
+
+                    // Spawn vine at death.
+                    vinesToSpawn.Add(position);
+
+                    Object.DestroyImmediate(character.gameObject);
+                }
+            }
+
+            foreach (var position in vinesToSpawn)
+            {
+                SpawnVine(position);
+
+            }
         }
 
         // Scale vines

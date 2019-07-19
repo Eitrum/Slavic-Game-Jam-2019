@@ -7,6 +7,7 @@ public sealed class Seed : MonoBehaviour
     public Collider collider;
     public List<SeedTerrainImpact> seedTerrainImpactQueue;
     public List<SeedPlayerImpact> seedPlayerImpactQueue;
+    public Vector3 direction;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -28,7 +29,8 @@ public sealed class Seed : MonoBehaviour
         {
             seedTerrainImpactQueue.Add(new SeedTerrainImpact
             {
-                position = transform.position
+                position = rb.position,
+                direction = direction
             });
         }
         Destroy(this.gameObject);
@@ -38,6 +40,7 @@ public sealed class Seed : MonoBehaviour
 public struct SeedTerrainImpact
 {
     public Vector3 position;
+    public Vector3 direction;
 }
 
 public struct SeedPlayerImpact

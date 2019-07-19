@@ -35,6 +35,7 @@ public class SeedFiringSystem
             Rigidbody rb = seed.rb;
             rb.position = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
+            seed.direction = shootIntent.direction.normalized;
         }
         shootIntents.Clear();
     }
