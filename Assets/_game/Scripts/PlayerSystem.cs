@@ -21,7 +21,7 @@ public class PlayerSystem
                 continue;
             }
             player.possesedCharacter.movementIntent = new Vector3(Input.GetAxisRaw("Horizontal" + player.playerIndex), 0f, Input.GetAxisRaw("Vertical" + player.playerIndex));
-            player.possesedCharacter.shootIntent = Input.GetKeyDown(KeyCode.Space);
+            player.possesedCharacter.shootIntent = Input.GetButtonDown("Shoot" + (player.playerIndex + 1));
         }
     }
 }
