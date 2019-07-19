@@ -29,6 +29,7 @@ public class SeedFiringSystem
         foreach (var shootIntent in shootIntents)
         {
             Seed seed = Object.Instantiate(seedPrefab);
+            Physics.IgnoreCollision(seed.collider, shootIntent.character.GetComponentInChildren<Collider>());
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
             Rigidbody rb = seed.rb;
@@ -41,6 +42,7 @@ public class SeedFiringSystem
 
 public struct ShootIntent
 {
+    public Character character;
     public Vector3 position;
     public Vector3 direction;
 }

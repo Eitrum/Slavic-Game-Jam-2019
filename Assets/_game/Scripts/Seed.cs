@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public sealed class Seed : MonoBehaviour
 {
     public Rigidbody rb;
+    public Collider collider;
     public List<SeedTerrainImpact> seedTerrainImpactQueue;
     public List<SeedPlayerImpact> seedPlayerImpactQueue;
 
