@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class PlayerInputSystem
 {
-    private readonly List<Character> characters;
-    private readonly List<ShootIntent> fireSeedIntents;
+    private readonly List<Player> players;
+    private readonly List<ShootIntent> shootIntents;
 
     public PlayerInputSystem(
-        List<Character> characters
+        List<Player> players,
+        List<ShootIntent> shootIntents
     )
     {
-        this.characters = characters;
+        this.players = players;
+        this.shootIntents = shootIntents;
     }
 
     public void Tick()
     {
-        foreach (var character in characters)
+        foreach (var player in players)
         {
-            if (character.shootIntent)
+            if (player.possesedCharacter.shootIntent)
             {
-                Transform charTransform = character.transform;
-                fireSeedIntents.Add(new ShootIntent
+                Transform charTransform = player.possesedCharacter.transform;
+                shootIntents.Add(new ShootIntent
                 {
                     position = charTransform.position + charTransform.forward,
                     direction = charTransform.forward

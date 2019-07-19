@@ -31,6 +31,7 @@ public class SeedFiringSystem
             rb.position = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
         }
+        shootIntents.Clear();
     }
 }
 
