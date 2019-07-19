@@ -2,7 +2,7 @@
 
 This is the best game jam game of all time. It revolutionizes the way the world thinks of gmae jam games. 
 
-Team:
+# The Team:
 Björn Englesson
 Max Jontegen
 Philip Bretschneider
