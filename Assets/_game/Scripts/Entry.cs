@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Entry : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Entry : MonoBehaviour
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
 
     public List<Transform> spawnPoints;
+    public CinemachineTargetGroup targetGroup;
 
     [Header("Prefabs")]
     public Seed seedPrefab;
@@ -41,6 +43,7 @@ public class Entry : MonoBehaviour
             player.possesedCharacter = character;
             player.playerIndex = i;
             players.Add(player);
+            targetGroup.AddMember(character.transform, 1f, 1f);
         }
         characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
