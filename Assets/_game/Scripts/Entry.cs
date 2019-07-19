@@ -9,6 +9,8 @@ public class Entry : MonoBehaviour
     private List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
     private List<Vine> vines = new List<Vine>();
 
+    public List<Transform> spawnPoints;
+
     [Header("Prefabs")]
     public Seed seedPrefab;
     public Character characterPrefab;
@@ -28,7 +30,8 @@ public class Entry : MonoBehaviour
         characters = new List<Character>(32);
         for (int i = 0; i < 2; i++)
         {
-            Character character = Instantiate(characterPrefab);
+            Transform spawnPoint = spawnPoints[i];
+            Character character = Instantiate(characterPrefab, spawnPoint.position, spawnPoint.rotation);
             character.playerIndex = i;
             characters.Add(character);
         }
