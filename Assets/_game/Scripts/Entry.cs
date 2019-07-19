@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Entry : MonoBehaviour
 {
-    List<Character> characters;
-
+    List<Character> characters = new List<Character>();
     private List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
     private List<Vine> vines = new List<Vine>();
+    private List<Player> players = new List<Player>();
 
     public List<Transform> spawnPoints;
 
@@ -24,20 +24,24 @@ public class Entry : MonoBehaviour
     private CharacterMovementSystem characterMovementSystem;
     private SeedFiringSystem seedFiringSystem;
     private VineSystem vineSystem;
+    private PlayerSystem playerSystem;
     
     void Start()
     {
-        characters = new List<Character>(32);
         for (int i = 0; i < 2; i++)
         {
             Transform spawnPoint = spawnPoints[i];
             Character character = Instantiate(characterPrefab, spawnPoint.position, spawnPoint.rotation);
-            character.playerIndex = i;
             characters.Add(character);
+            Player player = new Player();
+            player.possesedCharacter = character;
+            player.playerIndex = i;
+            players.Add(player);
         }
         characterMovementSystem = new CharacterMovementSystem(characters);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
         vineSystem = new VineSystem(vinePrefab, seedImpactQueue, vines, vineSettings);
+        playerSystem = new PlayerSystem(players);
     }
 
     private void FixedUpdate()
@@ -47,7 +51,7 @@ public class Entry : MonoBehaviour
 
     void Update()
     {
-        characterMovementSystem.Tick();
+        playerSystem.Tick();
         seedFiringSystem.Tick();
         vineSystem.Tick();
     }
