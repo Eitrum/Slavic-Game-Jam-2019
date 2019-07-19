@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549f8692500da4eaf8e85e58216bd704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seedPrefab: {fileID: 1025728797187398120, guid: 08fe3985f47624cc4bd780cdf392798a,
+    type: 3}
+  seedSettings: {fileID: 11400000, guid: 7db804c2dde274b2e97102a970ee6487, type: 2}

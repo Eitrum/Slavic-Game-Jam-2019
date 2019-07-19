@@ -6,12 +6,21 @@ public class Entry : MonoBehaviour
 {
     List<Character> characters;
 
-    CharacterMovementSystem characterMovementSystem;
-    // Start is called before the first frame update
+    [Header("Prefabs")]
+    public Seed seedPrefab;
+
+    [Header("Settings")]
+    public SeedSettings seedSettings;
+
+    // Systems
+    private CharacterMovementSystem characterMovementSystem;
+    private SeedFiringSystem seedFiringSystem;
+    
     void Start()
     {
         characters = new List<Character>(32);
         characterMovementSystem = new CharacterMovementSystem(characters);
+        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings);
     }
 
     private void FixedUpdate()
@@ -19,9 +28,8 @@ public class Entry : MonoBehaviour
         characterMovementSystem.FixedTick();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        seedFiringSystem.Tick();
     }
 }
