@@ -10,6 +10,7 @@ public class Entry : MonoBehaviour
 
     [Header("Prefabs")]
     public Seed seedPrefab;
+    public Character characterPrefab;
 
     [Header("Settings")]
     public SeedSettings seedSettings;
@@ -21,6 +22,10 @@ public class Entry : MonoBehaviour
     void Start()
     {
         characters = new List<Character>(32);
+        for (int i = 0; i < 2; i++)
+        {
+            characters.Add(Instantiate(characterPrefab));
+        }
         characterMovementSystem = new CharacterMovementSystem(characters);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
     }
