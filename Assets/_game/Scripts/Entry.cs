@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Entry : MonoBehaviour
 {
-    List<Character> characters = new List<Character>();
-    private List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
-    private List<Vine> vines = new List<Vine>();
-    private List<Player> players = new List<Player>();
+    private readonly List<Character> characters = new List<Character>();
+    private readonly List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
+    private readonly List<Vine> vines = new List<Vine>();
+    private readonly List<Player> players = new List<Player>();
+    private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
 
     public List<Transform> spawnPoints;
 
@@ -25,6 +26,7 @@ public class Entry : MonoBehaviour
     private SeedFiringSystem seedFiringSystem;
     private VineSystem vineSystem;
     private PlayerSystem playerSystem;
+    private PlayerInputSystem playerInputSystem;
     
     void Start()
     {
@@ -39,9 +41,10 @@ public class Entry : MonoBehaviour
             players.Add(player);
         }
         characterMovementSystem = new CharacterMovementSystem(characters);
-        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
+        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue, shootIntents);
         vineSystem = new VineSystem(vinePrefab, seedImpactQueue, vines, vineSettings);
         playerSystem = new PlayerSystem(players);
+        playerInputSystem = new PlayerInputSystem(players, shootIntents);
     }
 
     private void FixedUpdate()
@@ -51,6 +54,7 @@ public class Entry : MonoBehaviour
 
     void Update()
     {
+        playerInputSystem.Tick();
         playerSystem.Tick();
         seedFiringSystem.Tick();
         vineSystem.Tick();
