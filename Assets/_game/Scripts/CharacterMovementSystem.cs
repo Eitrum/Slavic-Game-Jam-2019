@@ -5,10 +5,14 @@ using UnityEngine;
 public class CharacterMovementSystem
 {
     readonly List<Character> characters;
+    readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
 
-    public CharacterMovementSystem(List<Character> characters)
-    {
+    public CharacterMovementSystem(
+        List<Character> characters,
+        List<SeedPlayerImpact> seedPlayerImpactQueue
+    ) {
         this.characters = characters;
+        this.seedPlayerImpactQueue = seedPlayerImpactQueue;
     }
 
     public void FixedTick()
@@ -22,5 +26,10 @@ public class CharacterMovementSystem
                 character.transform.rotation = Quaternion.LookRotation(character.movementIntent);
             }
         }
+        for (int i = 0; i < seedPlayerImpactQueue.Count; i++)
+        {
+            seedPlayerImpactQueue[i].character.rb.AddForce(Vector3.up * 100f);
+        }
+        seedPlayerImpactQueue.Clear();
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Entry : MonoBehaviour
 {
     private readonly List<Character> characters = new List<Character>();
-    private readonly List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
+    private readonly List<SeedTerrainImpact> seedTerrainImpactQueue = new List<SeedTerrainImpact>();
+    private readonly List<SeedPlayerImpact> seedPlayerImpactQueue = new List<SeedPlayerImpact>();
     private readonly List<Vine> vines = new List<Vine>();
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
@@ -41,9 +42,9 @@ public class Entry : MonoBehaviour
             player.playerIndex = i;
             players.Add(player);
         }
-        characterMovementSystem = new CharacterMovementSystem(characters);
-        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedImpactQueue, vines, vineSettings);
+        characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue);
+        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
     }

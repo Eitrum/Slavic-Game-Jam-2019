@@ -6,13 +6,13 @@ public sealed class VineSystem
 {
 
     private readonly Vine vinePrefab;
-    private readonly List<SeedImpact> seedImpactQueue;
+    private readonly List<SeedTerrainImpact> seedImpactQueue;
     private readonly List<Vine> vines;
     private readonly VineSettings vineSettings;
 
     public VineSystem(
         Vine vinePrefab,
-        List<SeedImpact> seedImpactQueue,
+        List<SeedTerrainImpact> seedImpactQueue,
         List<Vine> vines,
         VineSettings vineSettings
     )
