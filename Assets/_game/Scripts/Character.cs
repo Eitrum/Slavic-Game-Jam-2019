@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     internal int playerIndex;
 
     internal Vector3 movementIntent;
+    internal Vector3 aimIntent;
     internal bool shootIntent;
 
     internal float pushbackTimeStamp;

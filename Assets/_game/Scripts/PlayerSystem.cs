@@ -36,6 +36,11 @@ public class PlayerSystem
             else if (character.shootIntent) {
                 character.shootTimer = shootSettings.shootInterval;
             }
+
+            if (player.playerIndex == 0)
+            {
+                character.aimIntent = new Vector3(Input.GetAxisRaw("AimHorizontal" + player.playerIndex), 0f, Input.GetAxisRaw("AimVertical" + player.playerIndex));
+            }
         }
     }
 }

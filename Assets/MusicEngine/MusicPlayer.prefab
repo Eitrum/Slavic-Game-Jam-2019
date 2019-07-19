@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3023951830291556820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3023951830291556826}
+  - component: {fileID: 3023951830291556827}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3023951830291556826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3023951830291556820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3023951830291556827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3023951830291556820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d139408d5922148b5468a3db447ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channels:
+  - name: Beats
+    clips:
+    - {fileID: 8300000, guid: a6c86bce4b1906e46b132332c964a806, type: 3}
+    - {fileID: 8300000, guid: a24385033a1fa3149b34ed90f0c36386, type: 3}
+    - {fileID: 8300000, guid: cffe08fbc7b8398479def400f2c29f6b, type: 3}
+  - name: Smack
+    clips:
+    - {fileID: 8300000, guid: f71ebb83aed719c479fa469c972bb181, type: 3}
+    - {fileID: 8300000, guid: 8a09391bb172a024e8bbf88d1b3288de, type: 3}
+    - {fileID: 8300000, guid: 42c2e99b7174baf4fb12dc8676682317, type: 3}
+    - {fileID: 8300000, guid: 7ccd89657e86b1d4183ccab6d82eed8e, type: 3}
+    - {fileID: 8300000, guid: 40a0c414dcdb7f2498401b96e1f92432, type: 3}
+  - name: String
+    clips:
+    - {fileID: 8300000, guid: 26817143c5d5b8d45aba213e7e6df443, type: 3}
+    - {fileID: 8300000, guid: 5993e409fee7ac943ad61d18cb9c7a41, type: 3}
+    - {fileID: 8300000, guid: 7e2077915070c2b42ac453863d2a7ebb, type: 3}
+    - {fileID: 8300000, guid: f7b2ef66e3b48824987bc301a38eb162, type: 3}
+  - name: Piano
+    clips:
+    - {fileID: 8300000, guid: a58b3d5d1045ef146ace76e797b8bca2, type: 3}
+    - {fileID: 8300000, guid: d5c5bc33b8f41ba4990f7fe17a5ac271, type: 3}
+    - {fileID: 8300000, guid: a51901c55d1a86a4f9fa6c8cf4ea4dbf, type: 3}
+    - {fileID: 8300000, guid: b1f9053764a57734386e815785bbdcdf, type: 3}
+  activeClips: ffffffffffffffffffffffffffffffffffffffffffffffff
+  drums: 0
+  smack: 0
+  instrumentMask: 0
+  instument: 0
+  melody: 0

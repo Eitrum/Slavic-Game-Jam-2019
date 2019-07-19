@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d512bc19c75f4df9a9c77073ae619c2, type: 3}
   m_Name: ShootSettings
   m_EditorClassIdentifier: 
-  shootInterval: 0.5
+  shootInterval: 0.2

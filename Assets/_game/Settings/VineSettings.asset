@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1fa268b7c584cbbb7e770274fc6641, type: 3}
   m_Name: VineSettings
   m_EditorClassIdentifier: 
-  startScale: 1
-  endScale: 5
+  startScale: 0
+  endScale: 3
+  growDuration: 0.1
