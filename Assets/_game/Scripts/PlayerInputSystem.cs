@@ -23,10 +23,11 @@ public class PlayerInputSystem
             if (player.possesedCharacter.shootIntent)
             {
                 Transform shootTransform = player.possesedCharacter.shootTransform;
+                Vector3 direction = player.playerIndex == 0 ? player.possesedCharacter.aimIntent : shootTransform.forward;
                 shootIntents.Add(new ShootIntent
                 {
                     position = shootTransform.position + shootTransform.forward,
-                    direction = shootTransform.forward
+                    direction = direction
                 });
             }
         }
