@@ -24,7 +24,9 @@ public class Entry : MonoBehaviour
         characters = new List<Character>(32);
         for (int i = 0; i < 2; i++)
         {
-            characters.Add(Instantiate(characterPrefab));
+            Character character = Instantiate(characterPrefab);
+            character.playerIndex = i;
+            characters.Add(character);
         }
         characterMovementSystem = new CharacterMovementSystem(characters);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
@@ -37,6 +39,7 @@ public class Entry : MonoBehaviour
 
     void Update()
     {
+        characterMovementSystem.Tick();
         seedFiringSystem.Tick();
     }
 }

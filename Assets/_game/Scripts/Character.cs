@@ -6,4 +6,7 @@ public class Character : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed;
+
+    internal int playerIndex;
+    internal Vector3 movementIntent;
 }
