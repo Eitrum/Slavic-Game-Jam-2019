@@ -42,7 +42,6 @@ public sealed class VineSystem
         foreach (var vine in vines)
         {
             var collisions = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x / 2, layerMask);
-            Debug.DrawLine(vine.transform.position, vine.transform.position + Vector3.forward * vine.transform.localScale.x / 2f, Color.red);
             foreach (var collision in collisions)
             {
                 Character character = collision.GetComponentInParent<Character>();
