@@ -6,13 +6,16 @@ public class CharacterMovementSystem
 {
     readonly List<Character> characters;
     readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
+    readonly Transform camera;
 
     public CharacterMovementSystem(
         List<Character> characters,
-        List<SeedPlayerImpact> seedPlayerImpactQueue
+        List<SeedPlayerImpact> seedPlayerImpactQueue,
+        Transform camera
     ) {
         this.characters = characters;
         this.seedPlayerImpactQueue = seedPlayerImpactQueue;
+        this.camera = camera;
     }
 
     public void FixedTick()
@@ -30,7 +33,8 @@ public class CharacterMovementSystem
             {
                 continue;
             }
-            character.rb.AddForce(characters[i].speed * Time.deltaTime * character.movementIntent);
+            Vector3 movementRotatedByCamera = Quaternion.Euler(0f, camera.eulerAngles.y, 0f) * character.movementIntent;
+            character.rb.AddForce(characters[i].speed * Time.deltaTime * movementRotatedByCamera);
             if (character.movementIntent.sqrMagnitude > .01f)
             {
                 character.transform.rotation = Quaternion.LookRotation(character.movementIntent);

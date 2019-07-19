@@ -13,6 +13,7 @@ public class Entry : MonoBehaviour
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
 
     public List<Transform> spawnPoints;
+    public Camera cam;
     public CinemachineTargetGroup targetGroup;
 
     [Header("Prefabs")]
@@ -47,7 +48,7 @@ public class Entry : MonoBehaviour
             players.Add(player);
             targetGroup.AddMember(character.transform, 1f, 1f);
         }
-        characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue);
+        characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue, cam.transform);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters);
         playerSystem = new PlayerSystem(players, shootSettings);
