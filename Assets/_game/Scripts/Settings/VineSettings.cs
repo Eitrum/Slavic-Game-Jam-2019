@@ -7,4 +7,5 @@ public class VineSettings : ScriptableObject
 {
     public float startScale = 1f;
     public float endScale = 2f;
+    public float growDuration = 1f;
 }
