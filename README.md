@@ -1,1 +1,11 @@
 # Slavic-Game-Jam-2019
+
+This is the best game jam game of all time. It revolutionizes the way the world thinks of gmae jam games. 
+
+Team:
+Björn Englesson
+Max Jontegen
+Philip Bretschneider
+Armin Johansson
+Leo Toivio
+Sebastian Broström
