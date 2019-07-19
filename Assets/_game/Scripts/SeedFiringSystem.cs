@@ -29,7 +29,7 @@ public class SeedFiringSystem
         foreach (var shootIntent in shootIntents)
         {
             Seed seed = Object.Instantiate(seedPrefab);
-            Physics.IgnoreCollision(seed.GetComponentInChildren<Collider>(), shootIntent.character.GetComponentInChildren<Collider>());
+            Physics.IgnoreCollision(seed.collider, shootIntent.character.GetComponentInChildren<Collider>());
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
             Rigidbody rb = seed.rb;
