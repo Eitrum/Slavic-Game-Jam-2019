@@ -10,3 +10,5 @@ Philip Bretschneider
 Armin Johansson
 Leo Toivio
 Sebastian Broström
+
+Team motto - Everything is awesome!
