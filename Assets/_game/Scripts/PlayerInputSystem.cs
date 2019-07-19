@@ -22,11 +22,11 @@ public class PlayerInputSystem
         {
             if (player.possesedCharacter.shootIntent)
             {
-                Transform charTransform = player.possesedCharacter.transform;
+                Transform shootTransform = player.possesedCharacter.shootTransform;
                 shootIntents.Add(new ShootIntent
                 {
-                    position = charTransform.position + charTransform.forward,
-                    direction = charTransform.forward
+                    position = shootTransform.position + shootTransform.forward,
+                    direction = shootTransform.forward
                 });
             }
         }

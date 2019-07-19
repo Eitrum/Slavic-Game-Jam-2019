@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public Transform shootTransform;
     public Rigidbody rb;
     public float speed;
 
