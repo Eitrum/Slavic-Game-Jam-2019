@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2978983790614328410}
   - component: {fileID: 2020292221581650978}
   m_Layer: 0
-  m_Name: Rock_Geo
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +89,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 5669841949506587352, guid: 590de553b3ade624a84a1e969d8cfecf, type: 3}
