@@ -17,6 +17,7 @@ public class Entry : MonoBehaviour
 
     public List<Transform> spawnPoints;
     public Camera cam;
+    public GameObject startVirtualCam;
     public CinemachineTargetGroup targetGroup;
 
     [Header("Prefabs")]
@@ -37,7 +38,7 @@ public class Entry : MonoBehaviour
     private PlayerInputSystem playerInputSystem;
     private CharacterSpawnSystem characterSpawnSystem;
     
-    void Start()
+    IEnumerator Start()
     {
         for (int i = 0; i < PLAYER_COUNT; ++i)
         {
@@ -58,6 +59,8 @@ public class Entry : MonoBehaviour
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
+        yield return new WaitForSeconds(2f);
+        startVirtualCam.SetActive(false);
     }
 
     private void FixedUpdate()
