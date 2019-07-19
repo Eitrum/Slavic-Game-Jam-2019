@@ -19,13 +19,4 @@ public class CharacterMovementSystem
             character.rb.AddForce(characters[i].speed * Time.deltaTime * character.movementIntent);
         }
     }
-
-    public void Tick()
-    {
-        for (int i = 0; i < characters.Count; i++)
-        {
-            Character character = characters[i];
-            character.movementIntent = new Vector3(Input.GetAxisRaw("Horizontal" + character.playerIndex), 0f, Input.GetAxisRaw("Vertical" + character.playerIndex));
-        }
-    }
 }
