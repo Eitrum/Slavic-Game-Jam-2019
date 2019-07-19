@@ -28,7 +28,9 @@ public class SeedFiringSystem
             Rigidbody rb = seed.rb;
             // TODO : Spawn later at firing player.
             rb.position = Vector3.zero + 5f * Vector3.up;
-            rb.velocity = seedSettings.velocityMultiplier * Vector3.forward;
+            Vector3 randomDirection = Random.onUnitSphere;
+            Vector3 direction = new Vector3(randomDirection.x, 0f, randomDirection.y);
+            rb.velocity = seedSettings.velocityMultiplier * direction;
         }
     }
 }
