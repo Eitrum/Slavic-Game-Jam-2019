@@ -21,6 +21,7 @@ public class Entry : MonoBehaviour
     [Header("Settings")]
     public SeedSettings seedSettings;
     public VineSettings vineSettings;
+    public ShootSettings shootSettings;
 
     // Systems
     private CharacterMovementSystem characterMovementSystem;
@@ -44,7 +45,7 @@ public class Entry : MonoBehaviour
         characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings);
-        playerSystem = new PlayerSystem(players);
+        playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
     }
 
