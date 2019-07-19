@@ -6,6 +6,8 @@ public class Entry : MonoBehaviour
 {
     List<Character> characters;
 
+    private List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
+
     [Header("Prefabs")]
     public Seed seedPrefab;
 
@@ -20,7 +22,7 @@ public class Entry : MonoBehaviour
     {
         characters = new List<Character>(32);
         characterMovementSystem = new CharacterMovementSystem(characters);
-        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings);
+        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
     }
 
     private void FixedUpdate()
