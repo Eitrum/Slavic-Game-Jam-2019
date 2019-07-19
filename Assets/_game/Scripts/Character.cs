@@ -10,4 +10,6 @@ public class Character : MonoBehaviour
 
     internal Vector3 movementIntent;
     internal bool shootIntent;
+
+    internal float shootTimer;
 }
