@@ -7,17 +7,21 @@ public class Entry : MonoBehaviour
     List<Character> characters;
 
     private List<SeedImpact> seedImpactQueue = new List<SeedImpact>();
+    private List<Vine> vines = new List<Vine>();
 
     [Header("Prefabs")]
     public Seed seedPrefab;
     public Character characterPrefab;
+    public Vine vinePrefab;
 
     [Header("Settings")]
     public SeedSettings seedSettings;
+    public VineSettings vineSettings;
 
     // Systems
     private CharacterMovementSystem characterMovementSystem;
     private SeedFiringSystem seedFiringSystem;
+    private VineSystem vineSystem;
     
     void Start()
     {
@@ -30,6 +34,7 @@ public class Entry : MonoBehaviour
         }
         characterMovementSystem = new CharacterMovementSystem(characters);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedImpactQueue);
+        vineSystem = new VineSystem(vinePrefab, seedImpactQueue, vines, vineSettings);
     }
 
     private void FixedUpdate()
@@ -41,5 +46,6 @@ public class Entry : MonoBehaviour
     {
         characterMovementSystem.Tick();
         seedFiringSystem.Tick();
+        vineSystem.Tick();
     }
 }

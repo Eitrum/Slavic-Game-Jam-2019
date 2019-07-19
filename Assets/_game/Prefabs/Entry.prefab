@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedPrefab: {fileID: 2898505159013187308, guid: 97b5b8c0fca044fe3acb9ed6dff02ee4,
     type: 3}
-  characterPrefab: {fileID: 6173939114200320581, guid: b0bcd06f3c4424ef0b27d34a3751e8d0,
+  vinePrefab: {fileID: 5229569539311815505, guid: fda7a4b06a15d49489274b208f10d201,
     type: 3}
   seedSettings: {fileID: 11400000, guid: 7db804c2dde274b2e97102a970ee6487, type: 2}
+  vineSettings: {fileID: 11400000, guid: a85b3c51d6ea140e4be1027e9402f16b, type: 2}
