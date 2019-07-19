@@ -17,6 +17,10 @@ public class CharacterMovementSystem
         {
             Character character = characters[i];
             character.rb.AddForce(characters[i].speed * Time.deltaTime * character.movementIntent);
+            if (character.movementIntent.sqrMagnitude > .01f)
+            {
+                character.transform.rotation = Quaternion.LookRotation(character.movementIntent);
+            }
         }
     }
 }
