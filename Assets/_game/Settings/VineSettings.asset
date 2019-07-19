@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VineSettings
   m_EditorClassIdentifier: 
   startScale: 1
-  endScale: 5
+  endScale: 1

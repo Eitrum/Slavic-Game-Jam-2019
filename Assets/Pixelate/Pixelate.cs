@@ -14,7 +14,7 @@ public class Pixelate : MonoBehaviour {
     public int PixelWidth {
         get => pixelWidth;
         set {
-            pixelWidth = Mathf.Clamp(value, 10, Screen.width);
+            pixelWidth = value;
             UpdateMaterial();
         }
     }

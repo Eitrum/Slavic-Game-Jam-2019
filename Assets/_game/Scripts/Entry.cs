@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class Entry : MonoBehaviour
 {
+    public const int PLAYER_COUNT = 4;
+
     private readonly List<Character> characters = new List<Character>();
     private readonly List<SeedTerrainImpact> seedTerrainImpactQueue = new List<SeedTerrainImpact>();
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue = new List<SeedPlayerImpact>();
@@ -37,7 +39,7 @@ public class Entry : MonoBehaviour
     
     void Start()
     {
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < PLAYER_COUNT; ++i)
         {
             players.Add(new Player
             {
