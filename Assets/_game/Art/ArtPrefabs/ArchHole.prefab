@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2234440795836590752}
   - component: {fileID: 7086786402996981910}
   - component: {fileID: 3559492719283793007}
+  - component: {fileID: 1571983391503479159}
   m_Layer: 0
-  m_Name: ArchHole_Geo
+  m_Name: ArchHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1571983391503479159
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979427782686005427}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -3384773210657922246, guid: 5938d6ea3c517fe409d90723b01b4644, type: 3}

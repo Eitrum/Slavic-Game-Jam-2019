@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4246675449608973918}
   - component: {fileID: 5166823311524467816}
   - component: {fileID: 1479633714128644241}
+  - component: {fileID: -667488709971647227}
   m_Layer: 0
-  m_Name: Arch_Geo
+  m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-667488709971647227
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915463323024514125}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5250587031450351934, guid: 54261e4940545c74ea478242d87eb09f, type: 3}
