@@ -10,6 +10,7 @@ public sealed class VineSystem
     private readonly List<Vine> vines;
     private readonly VineSettings vineSettings;
     private readonly List<Character> characters;
+    private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
     
 
     public VineSystem(
@@ -17,7 +18,8 @@ public sealed class VineSystem
         List<SeedTerrainImpact> seedImpactQueue,
         List<Vine> vines,
         VineSettings vineSettings,
-        List<Character> characters
+        List<Character> characters,
+        List<SpawnCharacterRequest> spawnCharacterRequests
     )
     {
         this.vinePrefab = vinePrefab;
@@ -25,6 +27,7 @@ public sealed class VineSystem
         this.vines = vines;
         this.vineSettings = vineSettings;
         this.characters = characters;
+        this.spawnCharacterRequests = spawnCharacterRequests;
     }
 
     public void Tick()
@@ -47,10 +50,17 @@ public sealed class VineSystem
                 Character character = collision.GetComponentInParent<Character>();
                 characters.Remove(character);
                 Vector3 position = character.transform.position;
-                Object.Destroy(character.gameObject);
+                
+                spawnCharacterRequests.Add(new SpawnCharacterRequest
+                {
+                    spawnTimer = 1.5f,
+                    playerIndex = character.playerIndex
+                });
 
                 // Spawn vine at death.
                 vinesToSpawn.Add(position);
+
+                Object.DestroyImmediate(character.gameObject);
             }
         }
 
@@ -68,7 +78,7 @@ public sealed class VineSystem
 
     private void SpawnVine(Vector3 position)
     {
-        Vine vine = Object.Instantiate(vinePrefab, position, Random.rotation);
+        Vine vine = Object.Instantiate(vinePrefab, position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
         vine.transform.localScale = vineSettings.startScale * Vector3.one;
         vines.Add(vine);
     }
