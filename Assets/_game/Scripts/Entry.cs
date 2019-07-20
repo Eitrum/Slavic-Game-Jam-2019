@@ -65,7 +65,8 @@ public class Entry : MonoBehaviour
         {
         players.Add(new Player
         {
-            playerIndex = i
+            playerIndex = i,
+            inputIndex = i
         });
         }
 
