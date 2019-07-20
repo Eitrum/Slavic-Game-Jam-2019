@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
+[ExecuteInEditMode]
 public class Pixelate : MonoBehaviour {
 
     [SerializeField] private int pixelWidth = 192;
@@ -10,6 +11,18 @@ public class Pixelate : MonoBehaviour {
     private Material material = null;
     private int widthId;
     private int heightId;
+
+    public Material Material {
+        get {
+            if(!material) {
+                material = new Material(Shader.Find("Hidden/PixelateShader"));
+                widthId = Shader.PropertyToID("_Width");
+                heightId = Shader.PropertyToID("_Height");
+            }
+
+            return material;
+        }
+    }
 
     public int PixelWidth {
         get => pixelWidth;
@@ -20,15 +33,18 @@ public class Pixelate : MonoBehaviour {
     }
 
     void Awake() {
-        material = new Material(Shader.Find("Hidden/PixelateShader"));
-        widthId = Shader.PropertyToID("_Width");
-        heightId = Shader.PropertyToID("_Height");
         UpdateMaterial();
+    }
+
+    ~Pixelate() {
+        if(material) {
+            DestroyImmediate(material);
+        }
     }
 
     void OnDestroy() {
         if(material) {
-            Destroy(material);
+            DestroyImmediate(material);
         }
     }
 
@@ -43,6 +59,9 @@ public class Pixelate : MonoBehaviour {
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst) {
-        Graphics.Blit(src, dst, material);
+#if UNITY_EDITOR
+        UpdateMaterial();
+#endif
+        Graphics.Blit(src, dst, Material);
     }
 }

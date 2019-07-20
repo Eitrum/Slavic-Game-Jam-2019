@@ -6,11 +6,17 @@ using UnityEditor;
 [CustomEditor(typeof(Pixelate))]
 public class PixelateInspector : Editor {
     public override void OnInspectorGUI() {
-        SerializedObject so = new SerializedObject(target);
+        var so = serializedObject;
+
         var pixelate = (Pixelate)target;
-        pixelate.PixelWidth = EditorGUILayout.IntSlider("Pixel Width", pixelate.PixelWidth, 10, 1920);
-        if(so.hasModifiedProperties) {
+        var oldPixelWidth = pixelate.PixelWidth;
+         var newPixelWidth = EditorGUILayout.IntSlider("Pixel Width", oldPixelWidth, 10, 1920);
+
+        if(newPixelWidth != oldPixelWidth) {
+            so.FindProperty("pixelWidth").intValue = newPixelWidth;
             so.ApplyModifiedProperties();
+            so.Update();
+            pixelate.PixelWidth = newPixelWidth;
         }
     }
 }

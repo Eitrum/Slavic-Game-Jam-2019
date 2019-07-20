@@ -41,10 +41,14 @@ public class SeedFiringSystem
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
             seed.seedVineStayQueue = seedVineStayQueue;
+            seed.spawnTimeStamp = Time.time;
             Rigidbody rb = seed.rb;
             rb.position = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
             seed.direction = shootIntent.direction.normalized;
+            float directionAngle = Vector3.SignedAngle(Vector3.forward, seed.direction, Vector3.up);
+            directionAngle = Mathf.Round(directionAngle / 22.5f) * 22.5f;
+            seed.direction = new Vector3(Mathf.Cos(directionAngle), 0f, Mathf.Sin(directionAngle));
         }
         shootIntents.Clear();
     }

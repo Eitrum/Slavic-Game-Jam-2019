@@ -26,7 +26,8 @@ Material:
     m_Floats:
     - _GradientLerp: 0
     - _Power: 1
-    - _Range: 1
+    - _RandValue: 0
+    - _Range: 0.49
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0, g: 0.7544947, b: 1, a: 0}
