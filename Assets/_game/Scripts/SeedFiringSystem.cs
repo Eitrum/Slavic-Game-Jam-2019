@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Cinemachine;
 
 public class SeedFiringSystem
 {
@@ -11,6 +12,7 @@ public class SeedFiringSystem
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
     private readonly List<SeedVineStay> seedVineStayQueue;
     private readonly List<ShootIntent> shootIntents;
+    private readonly CinemachineImpulseSource impulseSource;
 
     public SeedFiringSystem(
         List<Seed> seeds,
@@ -20,7 +22,8 @@ public class SeedFiringSystem
         List<SeedTerrainImpact> seedTerrainImpactQueue,
         List<SeedPlayerImpact> seedPlayerImpactQueue,
         List<SeedVineStay> seedVineStayQueue,
-        List<ShootIntent> shootIntents
+        List<ShootIntent> shootIntents,
+        CinemachineImpulseSource impulseSource
     )
     {
         this.seeds = seeds;
@@ -31,15 +34,17 @@ public class SeedFiringSystem
         this.seedPlayerImpactQueue = seedPlayerImpactQueue;
         this.seedVineStayQueue = seedVineStayQueue;
         this.shootIntents = shootIntents;
+        this.impulseSource = impulseSource;
     }
 
     public void Tick()
     {
         foreach (var shootIntent in shootIntents)
         {
+            impulseSource.GenerateImpulse();
             Seed seed = Object.Instantiate(seedPrefab);
             seeds.Add(seed);
-            Physics.IgnoreCollision(seed.collider, shootIntent.character.GetComponentInChildren<Collider>());
+            Physics.IgnoreCollision(seed.collider, shootIntent.player.possesedCharacter.GetComponentInChildren<Collider>());
             seed.seeds = seeds;
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
@@ -49,11 +54,9 @@ public class SeedFiringSystem
             seed.spawnPosition = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
             seed.direction = shootIntent.direction.normalized;
-            float directionAngle = Vector3.SignedAngle(Vector3.forward, seed.direction, Vector3.up);
-            directionAngle = Mathf.Round(directionAngle / 45f) * 45f;
-            seed.direction = new Vector3(Mathf.Cos(directionAngle), 0f, Mathf.Sin(directionAngle));
+            seed.transform.forward = seed.direction;
 
-            shootIntent.character.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.character.playerIndex]);
+            shootIntent.player.possesedCharacter.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.player.playerIndex]);
         }
         shootIntents.Clear();
     }
@@ -61,7 +64,7 @@ public class SeedFiringSystem
 
 public struct ShootIntent
 {
-    public Character character;
+    public Player player;
     public Vector3 position;
     public Vector3 direction;
 }

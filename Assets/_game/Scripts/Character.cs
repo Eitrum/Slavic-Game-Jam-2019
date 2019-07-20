@@ -9,8 +9,6 @@ public class Character : MonoBehaviour
     public float speed;
     public GameObject deathEffectPrefab = null;
 
-    internal int playerIndex;
-
     internal Vector3 movementIntent;
     internal Vector3 aimIntent;
     internal bool shootIntent;

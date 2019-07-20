@@ -33,7 +33,7 @@ public class PlayerInputSystem {
                 }
 
                 shootIntents.Add(new ShootIntent {
-                    character = player.possesedCharacter,
+                    player = player,
                     position = shootTransform.position,
                     direction = direction
                 });

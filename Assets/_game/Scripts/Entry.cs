@@ -30,10 +30,11 @@ public class Entry : MonoBehaviour
     public GameObject startVirtualCam;
     public CinemachineTargetGroup targetGroup;
     public GameObject winText;
+    public CinemachineImpulseSource impulseSource;
 
     [Header("Prefabs")]
     public Seed seedPrefab;
-    public Character characterPrefab;
+    public Character[] characterPrefabs;
     public Vine vinePrefab;
     public Explosion explosionPrefab;
 
@@ -64,15 +65,16 @@ public class Entry : MonoBehaviour
         {
         players.Add(new Player
         {
-            playerIndex = i
+            playerIndex = i,
+            inputIndex = i
         });
         }
 
 
-        characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
+        characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefabs, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
-        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
+        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents, impulseSource);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents, targetGroup);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
         seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
@@ -117,6 +119,7 @@ public class Entry : MonoBehaviour
             case GameState.Start:
                 for (int i = characters.Count - 1; i >= 0; --i)
                 {
+                    targetGroup.RemoveMember(characters[i].transform);
                     Object.Destroy(characters[i].gameObject);
                 }
                 characters.Clear();
@@ -126,6 +129,18 @@ public class Entry : MonoBehaviour
                     Object.Destroy(vines[i].gameObject);
                 }
                 vines.Clear();
+
+                for (int i = seeds.Count - 1; i >= 0; --i)
+                {
+                    Object.Destroy(seeds[i].gameObject);
+                }
+                seeds.Clear();
+
+                seedTerrainImpactQueue.Clear();
+                seedPlayerImpactQueue.Clear();
+                seedVineStayQueue.Clear();
+                shootIntents.Clear();
+                explosionIntents.Clear();
 
                 for (int i = 0; i < PLAYER_COUNT; ++i)
                 {

@@ -6,6 +6,7 @@ public sealed class FireSystem
 {
     public List<ExplosionIntent> explosionIntents;
     public Explosion explosionPrefab;
+    private List<Explosion> explosions = new List<Explosion>();
 
     public FireSystem(
         List<ExplosionIntent> explosionIntents,
@@ -18,6 +19,13 @@ public sealed class FireSystem
 
     internal void Tick()
     {
+        foreach (var explosion in explosions)
+        {
+            if (explosion != null)
+                explosion.col.enabled = false;
+        }
+        explosions.Clear();
+
         float dt = Time.deltaTime;
         for (int i = explosionIntents.Count - 1, n = 0; i >= n; --i)
         {
@@ -27,7 +35,8 @@ public sealed class FireSystem
             {
                 // Explode
                 Object.DestroyImmediate(explosionIntent.vine.gameObject);
-                Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
+                Explosion explosion = Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
+                explosions.Add(explosion);
                 explosionIntents.Remove(explosionIntents[i]);
             }
             else
