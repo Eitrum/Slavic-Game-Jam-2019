@@ -117,6 +117,9 @@ public class Entry : MonoBehaviour
                 }
                 break;
             case GameState.Start:
+
+                Time.timeScale = 1f;
+
                 for (int i = characters.Count - 1; i >= 0; --i)
                 {
                     targetGroup.RemoveMember(characters[i].transform);
@@ -170,6 +173,7 @@ public class Entry : MonoBehaviour
             case GameState.End:
                 playerSystem.Tick();
 
+                Time.timeScale = Mathf.Lerp(1f, .5f, endGameTimer / END_GAME_TIME);
                 endGameTimer -= Time.deltaTime;
                 if (endGameTimer < 0f && Input.anyKeyDown) {
                     winText.SetActive(false);

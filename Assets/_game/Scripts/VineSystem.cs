@@ -72,8 +72,10 @@ public sealed class VineSystem
                     //});
 
                     // Spawn vine at death.
-                    Object.Instantiate(character.deathEffectPrefab, position, Quaternion.identity);
+                    var effect = Object.Instantiate(character.deathEffectPrefab, position, Quaternion.identity);
                     vinesToSpawn.Add(position);
+
+                    targetGroup.AddMember(effect.transform, 1f, 1f);
 
                     Object.DestroyImmediate(character.gameObject);
                 }
