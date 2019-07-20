@@ -14,8 +14,6 @@ public sealed class VineSystem
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
     private readonly List<ExplosionIntent> explosionIntents;
 
-    static Collider[] colliders = new Collider[32];
-
     private const float RAYCAST_DISTANCE = 1.5f;
 
     public VineSystem(
@@ -94,9 +92,10 @@ public sealed class VineSystem
             int layerMask = LayerMask.GetMask("Fire");
             List<Vine> vinesToDestroy = new List<Vine>();
             foreach (var vine in vines) {
-                var colliders = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x / 2f, layerMask, QueryTriggerInteraction.Collide);
+                var colliders = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x, layerMask, QueryTriggerInteraction.Collide);
                 if (colliders.Length > 0)
                 {
+                    vine.col.enabled = false;
                     explosionIntents.Add(new ExplosionIntent
                     {
                         position = vine.transform.position,

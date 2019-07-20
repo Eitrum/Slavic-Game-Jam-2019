@@ -5,6 +5,7 @@ public class Vine : MonoBehaviour
 {
     internal float spawnTimeStamp;
     internal float endScale;
+    public Collider col;
 
     public ParticleSystem[] particleSystemsToPause;
     private float timer = 0f;
