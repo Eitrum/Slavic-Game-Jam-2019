@@ -97,7 +97,7 @@ public sealed class VineSystem
                     explosionIntents.Add(new ExplosionIntent
                     {
                         position = vine.transform.position,
-                        timeToExplosion = 0.25f,
+                        timeToExplosion = 0.1f,
                         vine = vine
                     });
                     vinesToDestroy.Add(vine);
