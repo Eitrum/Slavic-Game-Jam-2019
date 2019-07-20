@@ -129,6 +129,18 @@ public class Entry : MonoBehaviour
                 }
                 vines.Clear();
 
+                for (int i = seeds.Count - 1; i >= 0; --i)
+                {
+                    Object.Destroy(seeds[i].gameObject);
+                }
+                seeds.Clear();
+
+                seedTerrainImpactQueue.Clear();
+                seedPlayerImpactQueue.Clear();
+                seedVineStayQueue.Clear();
+                shootIntents.Clear();
+                explosionIntents.Clear();
+
                 for (int i = 0; i < PLAYER_COUNT; ++i)
                 {
                     spawnCharacterRequests.Add(new SpawnCharacterRequest
