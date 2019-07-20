@@ -20,6 +20,7 @@ public class Entry : MonoBehaviour
     private readonly List<SeedVineStay> seedVineStayQueue = new List<SeedVineStay>();
     private readonly List<Seed> seeds = new List<Seed>();
     private readonly List<Vine> vines = new List<Vine>();
+    private readonly List<Vine> vinesToExplode = new List<Vine>();
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests = new List<SpawnCharacterRequest>();
@@ -74,11 +75,11 @@ public class Entry : MonoBehaviour
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefabs, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
         seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents, impulseSource);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents, targetGroup);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents, targetGroup, vinesToExplode);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
         seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
-        fireSystem = new FireSystem(explosionIntents, explosionPrefab, vines);
+        fireSystem = new FireSystem(explosionIntents, explosionPrefab, vines, vinesToExplode);
         yield return new WaitForSeconds(2f);
         
     }
@@ -117,6 +118,9 @@ public class Entry : MonoBehaviour
                 }
                 break;
             case GameState.Start:
+
+                Time.timeScale = 1f;
+
                 for (int i = characters.Count - 1; i >= 0; --i)
                 {
                     targetGroup.RemoveMember(characters[i].transform);
@@ -171,6 +175,7 @@ public class Entry : MonoBehaviour
             case GameState.End:
                 playerSystem.Tick();
 
+                Time.timeScale = Mathf.Lerp(1f, .5f, endGameTimer / END_GAME_TIME);
                 endGameTimer -= Time.deltaTime;
                 if (endGameTimer < 0f && Input.anyKeyDown) {
                     winText.SetActive(false);
