@@ -315,11 +315,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 892652467}
     m_Modifications:
-    - target: {fileID: 5254068039776692586, guid: 874b859c49844b644a50599c414dfd22,
-        type: 3}
-      propertyPath: m_Name
-      value: FireShockwave
-      objectReference: {fileID: 0}
     - target: {fileID: 7371413111338084719, guid: 874b859c49844b644a50599c414dfd22,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -389,6 +384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3.7602
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254068039776692586, guid: 874b859c49844b644a50599c414dfd22,
+        type: 3}
+      propertyPath: m_Name
+      value: FireShockwave
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -8736004652761684062, guid: 874b859c49844b644a50599c414dfd22, type: 3}
@@ -1128,7 +1128,10 @@ MonoBehaviour:
   m_PositionMode: 0
   m_RotationMode: 0
   m_UpdateMethod: 2
-  m_Targets: []
+  m_Targets:
+  - target: {fileID: 892652467}
+    weight: 0.5
+    radius: 0
 --- !u!4 &1385348942
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,7 +1140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385348940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.65, y: 1.81, z: -8.76}
+  m_LocalPosition: {x: 6.6000004, y: 1.5, z: 1.7581377}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1419,7 +1422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652573800}
   m_LocalRotation: {x: 0.63398933, y: 0.00000005727982, z: -0.000000047205916, w: 0.7733419}
-  m_LocalPosition: {x: -0.012175528, y: 415483.38, z: -83096.19}
+  m_LocalPosition: {x: 6.6, y: 50.529057, z: -8.047614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647641715}
