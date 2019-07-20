@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public sealed class CharacterSpawnSystem
-{
+public sealed class CharacterSpawnSystem {
     private readonly List<Character> characters;
     private readonly List<Transform> spawnPositions;
     private readonly List<SpawnCharacterRequest> spawnRequests;
@@ -19,8 +18,7 @@ public sealed class CharacterSpawnSystem
         Character[] characterPrefabs,
         List<Player> players,
         CinemachineTargetGroup targetGroup
-    )
-    {
+    ) {
         this.characters = characters;
         this.spawnPositions = spawnPositions;
         this.spawnRequests = spawnRequests;
@@ -29,34 +27,27 @@ public sealed class CharacterSpawnSystem
         this.targetGroup = targetGroup;
     }
 
-    public void Tick()
-    {
-        for (int i = spawnRequests.Count - 1; i >= 0; --i)
-        {
+    public void Tick() {
+        for(int i = spawnRequests.Count - 1; i >= 0; --i) {
             SpawnCharacterRequest request = spawnRequests[i];
-            if (request.spawnTimer <= 0f)
-            {
+            if(request.spawnTimer <= 0f) {
                 SpawnCharacter(request.playerIndex);
                 spawnRequests.Remove(request);
             }
-            else
-            {
+            else {
                 request.spawnTimer -= Time.deltaTime;
                 spawnRequests[i] = request;
             }
         }
     }
 
-    private void SpawnCharacter(int playerIndex)
-    {
+    private void SpawnCharacter(int playerIndex) {
         Vector3 spawnPosition = spawnPositions[playerIndex].position;
         Character character = Object.Instantiate(characterPrefabs[playerIndex], spawnPosition, Quaternion.identity);
-        foreach (var player in players)
-        {
-            if (player.playerIndex == playerIndex)
-            {
+        foreach(var player in players) {
+            if(player.playerIndex == playerIndex) {
                 player.possesedCharacter = character;
-                player.inputIndex = -1;
+                //  player.inputIndex = -1;
             }
         }
         targetGroup.AddMember(character.transform, 1f, 10f);
@@ -64,8 +55,7 @@ public sealed class CharacterSpawnSystem
     }
 }
 
-public struct SpawnCharacterRequest
-{
+public struct SpawnCharacterRequest {
     public float spawnTimer;
     public int playerIndex;
 }
