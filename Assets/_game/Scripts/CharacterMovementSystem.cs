@@ -36,10 +36,10 @@ public class CharacterMovementSystem
             {
                 continue;
             }
-            Vector3 movementRotatedByCamera = Quaternion.Euler(0f, camera.eulerAngles.y, 0f) * character.movementIntent;
-            character.rb.AddForce(characters[i].speed * Time.deltaTime * movementRotatedByCamera);
-            if (character.movementIntent.sqrMagnitude > .01f)
+            if (character.movementIntent.magnitude > .4f)
             {
+                Vector3 movementRotatedByCamera = Quaternion.Euler(0f, camera.eulerAngles.y, 0f) * character.movementIntent;
+                character.rb.AddForce(characters[i].speed * Time.deltaTime * movementRotatedByCamera);
                 character.transform.rotation = Quaternion.LookRotation(character.movementIntent);
             }
 
