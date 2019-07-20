@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7371413111338084719}
   - component: {fileID: 4656083409891909233}
   - component: {fileID: 4131456593240033909}
-  - component: {fileID: 7153981437798802987}
+  - component: {fileID: -8736004652761684062}
   m_Layer: 0
   m_Name: FireShockwave
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11c9cda041fab5546a59091bad67e988, type: 2}
+  - {fileID: 2100000, guid: 60ea8ca6a418f874fb202a4529f923da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7153981437798802987
+--- !u!114 &-8736004652761684062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,32 +96,23 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.9305353
-      outSlope: 2.9305353
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.044444446
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0.82298446
-      outSlope: 0.82298446
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.08088887
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -7.5483437
-      outSlope: -7.5483437
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.019555569
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  scaleMultiplier: 15
-  duration: 0.4
+  scaleMultiplier: 10
+  duration: 1
