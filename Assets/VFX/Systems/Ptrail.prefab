@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300015883497775473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4353021556263221445}
@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300015883497775473}
   serializedVersion: 6
-  lengthInSec: 12
+  lengthInSec: 1
   simulationSpeed: 3
   stopAction: 0
   cullingMode: 0
@@ -115,8 +115,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 6
+      scalar: 0.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1029,7 +1029,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 0.5
     - serializedVersion: 2
-      time: 6
+      time: 1
       countCurve:
         serializedVersion: 2
         minMaxState: 0
@@ -1108,8 +1108,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.20051575
           value: 1
-          inSlope: 4.9871397
-          outSlope: 4.9871397
+          inSlope: 1.8681667
+          outSlope: 1.8681667
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -1.2508063
+          outSlope: -1.2508063
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -2740,7 +2749,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 1
@@ -4877,7 +4886,7 @@ GameObject:
   - component: {fileID: 4130561658316824203}
   - component: {fileID: 8800011689396361815}
   m_Layer: 0
-  m_Name: Pleafs
+  m_Name: Ptrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4909,7 +4918,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882607117932787021}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9647,7 +9656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7034821790544976220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4353021556263221445}
@@ -9661,7 +9670,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7034821790544976220}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 3
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
@@ -9736,8 +9745,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 6
+      scalar: 3
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9905,8 +9914,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.7
-      minScalar: 0.3
+      scalar: 1
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12303,7 +12312,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 1
@@ -14497,7 +14506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
@@ -14507,23 +14516,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
-      propertyPath: moveWithTransform
+      propertyPath: InitialModule.startLifetime.scalar
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
-      propertyPath: InheritVelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: InheritVelocityModule.m_Curve.scalar
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: InitialModule.size3D
-      value: 0
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 1.5707963
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
@@ -14532,8 +14531,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
-      propertyPath: InitialModule.startRotationY.scalar
-      value: 1.5707963
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
@@ -14602,8 +14611,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
+        type: 3}
       propertyPath: InheritVelocityModule.m_Curve.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
+        type: 3}
+      propertyPath: InheritVelocityModule.m_Curve.scalar
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
@@ -14614,6 +14633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorBySpeedModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
@@ -14634,31 +14658,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorBySpeedModule.gradient.maxGradient.m_NumAlphaKeys
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: ColorBySpeedModule.gradient.maxGradient.atime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: ColorModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938540927901950978, guid: 3edb914c27de01845a69ffcc48d5ce64,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3893742619577037255, guid: 3edb914c27de01845a69ffcc48d5ce64,
         type: 3}
