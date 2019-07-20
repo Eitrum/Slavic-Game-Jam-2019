@@ -15,6 +15,7 @@ public sealed class VineSystem
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
     private readonly List<ExplosionIntent> explosionIntents;
     private readonly CinemachineTargetGroup targetGroup;
+    private readonly List<Vine> vinesToExplode;
 
     private const float RAYCAST_DISTANCE = 1.5f;
 
@@ -27,7 +28,8 @@ public sealed class VineSystem
         List<Character> characters,
         List<SpawnCharacterRequest> spawnCharacterRequests,
         List<ExplosionIntent> explosionIntents,
-        CinemachineTargetGroup targetGroup
+        CinemachineTargetGroup targetGroup,
+        List<Vine> vinesToExplode
     )
     {
         this.vinePrefab = vinePrefab;
@@ -39,7 +41,8 @@ public sealed class VineSystem
         this.spawnCharacterRequests = spawnCharacterRequests;
         this.explosionIntents = explosionIntents;
         this.targetGroup = targetGroup;
-        }
+        this.vinesToExplode = vinesToExplode;
+    }
 
     public void FixedTick()
     {
@@ -98,10 +101,15 @@ public sealed class VineSystem
         {
             int layerMask = LayerMask.GetMask("Fire");
             foreach (var vine in vines) {
+                if (vinesToExplode.Contains(vine))
+                {
+                    continue;
+                }
+
                 var colliders = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x, layerMask, QueryTriggerInteraction.Collide);
                 if (colliders.Length > 0)
                 {
-                    vine.col.enabled = false;
+                    vinesToExplode.Add(vine);
                     explosionIntents.Add(new ExplosionIntent
                     {
                         position = vine.transform.position,

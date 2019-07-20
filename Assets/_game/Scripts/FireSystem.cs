@@ -8,16 +8,19 @@ public sealed class FireSystem
     private readonly List<Vine> vines;
     private readonly Explosion explosionPrefab;
     private readonly List<Explosion> explosions = new List<Explosion>();
+    private readonly List<Vine> vinesToExplode;
 
     public FireSystem(
         List<ExplosionIntent> explosionIntents,
         Explosion explosionPrefab,
-        List<Vine> vines
+        List<Vine> vines,
+        List<Vine> vinesToExplode
     )
     {
         this.explosionIntents = explosionIntents;
         this.explosionPrefab = explosionPrefab;
         this.vines = vines;
+        this.vinesToExplode = vinesToExplode;
     }
 
     internal void Tick()
@@ -40,6 +43,8 @@ public sealed class FireSystem
                 vines.Remove(explosionIntent.vine);
                 if(explosionIntent.vine != null)
                     explosionIntent.vine.isDestroying = true;
+
+                vinesToExplode.Remove(explosionIntent.vine);
                 Explosion explosion = Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
                 explosions.Add(explosion);
                 explosionIntents.Remove(explosionIntents[i]);
