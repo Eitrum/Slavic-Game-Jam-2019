@@ -15,6 +15,6 @@ MonoBehaviour:
   shootInterval: 0.05
   playerShootSFX:
   - {fileID: 8300000, guid: 3e994c2a212b99e4d92371a2dc50614f, type: 3}
-  - {fileID: 8300000, guid: 4a1a671ff575eb749bcd446938cb80a5, type: 3}
   - {fileID: 8300000, guid: a082f7115d85bde4a85f8b5c54d204d1, type: 3}
+  - {fileID: 8300000, guid: 4a1a671ff575eb749bcd446938cb80a5, type: 3}
   - {fileID: 8300000, guid: 4a7f0e8bc7b47f24ca318c8f2688738d, type: 3}

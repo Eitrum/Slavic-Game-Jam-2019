@@ -19,22 +19,19 @@ public class PlayerInputSystem {
             if(player.possesedCharacter != null && player.possesedCharacter.shootIntent) {
                 Transform shootTransform = player.possesedCharacter.shootTransform;
                 Vector3 direction;
-                if (player.possesedCharacter.aimIntent.magnitude >= .4f)
-                {
+                if(player.possesedCharacter.aimIntent.magnitude >= .4f) {
                     direction = player.possesedCharacter.aimIntent;
                 }
-                else if(player.possesedCharacter.aimIntent.magnitude <= Mathf.Epsilon)
-                {
+                else if(player.possesedCharacter.aimIntent.magnitude <= Mathf.Epsilon) {
                     direction = shootTransform.forward;
                 }
-                else
-                {
+                else {
                     continue;
                 }
 
                 shootIntents.Add(new ShootIntent {
                     player = player,
-                    position = shootTransform.position,
+                    position = shootTransform.position + direction * 2,
                     direction = direction
                 });
             }
