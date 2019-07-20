@@ -14,6 +14,8 @@ public sealed class VineSystem
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
     private readonly List<ExplosionIntent> explosionIntents;
 
+    static Collider[] colliders = new Collider[32];
+
     private const float RAYCAST_DISTANCE = 1.5f;
 
     public VineSystem(
