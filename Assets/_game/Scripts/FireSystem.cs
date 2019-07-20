@@ -4,17 +4,20 @@ using UnityEngine;
 
 public sealed class FireSystem
 {
-    public List<ExplosionIntent> explosionIntents;
-    public Explosion explosionPrefab;
-    private List<Explosion> explosions = new List<Explosion>();
+    private readonly List<ExplosionIntent> explosionIntents;
+    private readonly List<Vine> vines;
+    private readonly Explosion explosionPrefab;
+    private readonly List<Explosion> explosions = new List<Explosion>();
 
     public FireSystem(
         List<ExplosionIntent> explosionIntents,
-        Explosion explosionPrefab
+        Explosion explosionPrefab,
+        List<Vine> vines
     )
     {
         this.explosionIntents = explosionIntents;
         this.explosionPrefab = explosionPrefab;
+        this.vines = vines;
     }
 
     internal void Tick()
@@ -34,6 +37,7 @@ public sealed class FireSystem
             if (explosionIntent.timeToExplosion <= 0f)
             {
                 // Explode
+                vines.Remove(explosionIntent.vine);
                 Object.DestroyImmediate(explosionIntent.vine.gameObject);
                 Explosion explosion = Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
                 explosions.Add(explosion);
