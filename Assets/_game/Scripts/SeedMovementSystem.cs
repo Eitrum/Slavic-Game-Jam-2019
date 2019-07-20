@@ -34,7 +34,7 @@ public class SeedMovementSystem
             SeedVineStay seedVineStay = seedVineStayQueue[i];
             Seed seed = seedVineStay.seed;
             seed.overlappedVines.Add(seedVineStay.vine);
-            if (!seed.wasOverlappingVines && seed.overlappedVines.Count == 1)
+            if (!seed.wasOverlappingVines && seed.overlappedVines.Count == 1 && seed.rb != null)
             {
                 seed.yVelocityWhenEnterVine = seed.rb.velocity.y;
                 seed.rb.velocity = new Vector3(seed.rb.velocity.x, 0f, seed.rb.velocity.z);
