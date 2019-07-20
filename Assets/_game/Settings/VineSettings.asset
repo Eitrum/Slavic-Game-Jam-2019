@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startScale: 0
   endScale: 3
-  growDuration: 0.1
+  growDuration: 0.5
