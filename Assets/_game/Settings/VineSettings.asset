@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: VineSettings
   m_EditorClassIdentifier: 
   startScale: 0
-  endScaleMultiplier: 0.5
-  minEndScale: -1
+  endScaleMultiplier: 0.1
+  minEndScale: 2
   growDuration: 0.5
