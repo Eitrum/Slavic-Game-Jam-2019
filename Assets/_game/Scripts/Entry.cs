@@ -168,6 +168,7 @@ public class Entry : MonoBehaviour
                     endGameTimer = END_GAME_TIME;
                     winText.SetActive(true);
                     state = GameState.End;
+                    Resources.UnloadUnusedAssets();
                 }
                 break;
             case GameState.End:

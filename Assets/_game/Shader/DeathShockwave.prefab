@@ -97,35 +97,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.52550995
-      outSlope: 0.52550995
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.20266667
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 4.9761314
-      outSlope: 4.9761314
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.020444453
-      outWeight: 0.08088887
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -7.5483437
-      outSlope: -7.5483437
+      value: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.019555569
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  scaleMultiplier: 100
-  duration: 2
+  scaleMultiplier: 400
+  duration: 3
 --- !u!82 &6223722680011563106
 AudioSource:
   m_ObjectHideFlags: 0
