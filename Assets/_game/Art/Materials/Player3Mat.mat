@@ -72,8 +72,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 1
-    - _Range: 0.545
+    - _Power: 0.321
+    - _Range: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -88,6 +88,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0.18039215, g: 0.41882312, b: 0.7529412, a: 0}
-    - _Color2: {r: 0.14117648, g: 0.11029286, b: 0, a: 0}
+    - _Color0: {r: 0.0009089057, g: 0, b: 0.38679248, a: 0}
+    - _Color2: {r: 0, g: 0.3395729, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
