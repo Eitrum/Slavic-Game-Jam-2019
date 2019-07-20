@@ -56,6 +56,7 @@ public class SeedFiringSystem
             seed.direction = shootIntent.direction.normalized;
             seed.transform.forward = seed.direction;
 
+            shootIntent.player.possesedCharacter.shellParticle.Emit(1);
             shootIntent.player.possesedCharacter.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.player.playerIndex]);
         }
         shootIntents.Clear();
