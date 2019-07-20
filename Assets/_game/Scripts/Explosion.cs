@@ -9,9 +9,7 @@ public class Explosion : MonoBehaviour
     public GameObject firePrefab;
 
     void Awake() {
-        if(Random.Range(0, fireEffectRange) == 0) {
-            Instantiate(firePrefab, transform);
-        }
+        Instantiate(firePrefab, transform);
         Destroy(gameObject, 5f);
     }
 }

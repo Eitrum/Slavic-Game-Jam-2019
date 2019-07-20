@@ -59,6 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 7306254796679084524}
+  destroyDuration: 2
+  isDestroying: 0
   particleSystemsToPause:
   - {fileID: 4872726080802840608}
   - {fileID: 5612256283350846497}
@@ -68,6 +70,7 @@ MonoBehaviour:
   - {fileID: 2360681307140978872}
   - {fileID: 249847650246143730}
   - {fileID: 8630414957400146277}
+  greenRing: {fileID: 7952541408333634069}
 --- !u!1001 &1572486380502826712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +158,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3869017900796751882, guid: 6f2c61fc7a4ff5642a9fd5c65b986807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c61fc7a4ff5642a9fd5c65b986807, type: 3}
 --- !u!4 &7178890483091292046 stripped
@@ -202,6 +210,12 @@ ParticleSystem:
 --- !u!198 &249847650246143730 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1631775401990787114, guid: 6f2c61fc7a4ff5642a9fd5c65b986807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1572486380502826712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7952541408333634069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8903478263432422605, guid: 6f2c61fc7a4ff5642a9fd5c65b986807,
     type: 3}
   m_PrefabInstance: {fileID: 1572486380502826712}
   m_PrefabAsset: {fileID: 0}
