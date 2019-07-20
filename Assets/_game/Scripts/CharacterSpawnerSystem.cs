@@ -49,7 +49,7 @@ public sealed class CharacterSpawnSystem
 
     private void SpawnCharacter(int playerIndex)
     {
-        Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)].position;
+        Vector3 spawnPosition = spawnPositions[playerIndex].position;
         Character character = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
         character.playerIndex = playerIndex;
         foreach (var player in players)
