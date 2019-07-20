@@ -43,7 +43,7 @@ public sealed class VineSystem
         {
             foreach (var impact in seedImpactQueue)
             {
-                SpawnVine(impact.position);
+                SpawnVine(impact.position, impact.seedFlightDuration);
             }
             seedImpactQueue.Clear();
         }
@@ -75,7 +75,7 @@ public sealed class VineSystem
 
             foreach (var position in vinesToSpawn)
             {
-                SpawnVine(position);
+                SpawnVine(position, 2f);
 
             }
         }
@@ -83,7 +83,7 @@ public sealed class VineSystem
         // Scale vines
         foreach (var vine in vines)
         {
-            vine.transform.localScale = Vector3.Lerp(vine.transform.localScale, Vector3.one * vineSettings.endScale, (Time.time - vine.spawnTimeStamp) / vineSettings.growDuration);
+            vine.transform.localScale = Vector3.Lerp(vine.transform.localScale, vine.endScale * Vector3.one, (Time.time - vine.spawnTimeStamp) / vineSettings.growDuration);
         }
 
         // Explode if in fire
@@ -111,11 +111,12 @@ public sealed class VineSystem
         }
     }
 
-    private void SpawnVine(Vector3 position)
+    private void SpawnVine(Vector3 position, float size)
     {
         Vine vine = Object.Instantiate(vinePrefab, position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
         vine.transform.localScale = vineSettings.startScale * Vector3.one;
         vine.spawnTimeStamp = Time.time;
+        vine.endScale = vineSettings.endScale * size;
         vines.Add(vine);
     }
 }

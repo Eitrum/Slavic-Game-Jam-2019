@@ -41,6 +41,7 @@ public class SeedFiringSystem
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
             seed.seedVineStayQueue = seedVineStayQueue;
+            seed.spawnTimeStamp = Time.time;
             Rigidbody rb = seed.rb;
             rb.position = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
