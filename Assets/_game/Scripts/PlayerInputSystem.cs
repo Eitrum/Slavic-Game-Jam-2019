@@ -16,7 +16,7 @@ public class PlayerInputSystem {
 
     public void Tick() {
         foreach(var player in players) {
-            if(player.possesedCharacter.shootIntent) {
+            if(player.possesedCharacter != null && player.possesedCharacter.shootIntent) {
                 Transform shootTransform = player.possesedCharacter.shootTransform;
                 Vector3 direction = player.possesedCharacter.aimIntent;
 
