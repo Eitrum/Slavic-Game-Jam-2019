@@ -7,7 +7,13 @@ public sealed class Seed : MonoBehaviour
     public Collider collider;
     public List<SeedTerrainImpact> seedTerrainImpactQueue;
     public List<SeedPlayerImpact> seedPlayerImpactQueue;
+    public List<SeedVineStay> seedVineStayQueue;
     public Vector3 direction;
+
+    internal List<Seed> seeds;
+    internal List<Vine> overlappedVines = new List<Vine>();
+    internal bool wasOverlappingVines;
+    internal float yVelocityWhenEnterVine;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -33,7 +39,21 @@ public sealed class Seed : MonoBehaviour
                 direction = direction
             });
         }
+        seeds.Remove(this);
         Destroy(this.gameObject);
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        Vine vine = other.GetComponent<Vine>();
+        if (vine != null)
+        {
+            seedVineStayQueue.Add(new SeedVineStay
+            {
+                seed = this,
+                vine = vine
+            });
+        }
     }
 }
 
@@ -47,4 +67,10 @@ public struct SeedPlayerImpact
 {
     public Vector3 position;
     public Character character;
+}
+
+public struct SeedVineStay
+{
+    public Seed seed;
+    public Vine vine;
 }

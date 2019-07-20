@@ -10,10 +10,13 @@ public class Entry : MonoBehaviour
     private readonly List<Character> characters = new List<Character>();
     private readonly List<SeedTerrainImpact> seedTerrainImpactQueue = new List<SeedTerrainImpact>();
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue = new List<SeedPlayerImpact>();
+    private readonly List<SeedVineStay> seedVineStayQueue = new List<SeedVineStay>();
+    private readonly List<Seed> seeds = new List<Seed>();
     private readonly List<Vine> vines = new List<Vine>();
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests = new List<SpawnCharacterRequest>();
+    private readonly List<ExplosionIntent> explosionIntents = new List<ExplosionIntent>();
 
     public List<Transform> spawnPoints;
     public Camera cam;
@@ -24,6 +27,7 @@ public class Entry : MonoBehaviour
     public Seed seedPrefab;
     public Character characterPrefab;
     public Vine vinePrefab;
+    public Explosion explosionPrefab;
 
     [Header("Settings")]
     public SeedSettings seedSettings;
@@ -37,7 +41,9 @@ public class Entry : MonoBehaviour
     private PlayerSystem playerSystem;
     private PlayerInputSystem playerInputSystem;
     private CharacterSpawnSystem characterSpawnSystem;
-    
+    private SeedMovementSystem seedMovementSystem;
+    private FireSystem fireSystem;
+
     IEnumerator Start()
     {
         for (int i = 0; i < PLAYER_COUNT; ++i)
@@ -54,18 +60,22 @@ public class Entry : MonoBehaviour
         }
 
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
-        characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue, cam.transform);
-        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests);
+        characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
+        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
+        seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
+        fireSystem = new FireSystem(explosionIntents, explosionPrefab);
         yield return new WaitForSeconds(2f);
         startVirtualCam.SetActive(false);
     }
 
     private void FixedUpdate()
     {
+        seedMovementSystem.FixedTick();
         characterMovementSystem.FixedTick();
+        vineSystem.Tick();
     }
 
     void Update()
@@ -74,6 +84,6 @@ public class Entry : MonoBehaviour
         playerInputSystem.Tick();
         playerSystem.Tick();
         seedFiringSystem.Tick();
-        vineSystem.Tick();
+        fireSystem.Tick();
     }
 }
