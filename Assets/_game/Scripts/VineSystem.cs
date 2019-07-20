@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public sealed class VineSystem
@@ -13,6 +14,7 @@ public sealed class VineSystem
     private readonly List<Character> characters;
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
     private readonly List<ExplosionIntent> explosionIntents;
+    private readonly CinemachineTargetGroup targetGroup;
 
     private const float RAYCAST_DISTANCE = 1.5f;
 
@@ -24,7 +26,8 @@ public sealed class VineSystem
         VineSettings vineSettings,
         List<Character> characters,
         List<SpawnCharacterRequest> spawnCharacterRequests,
-        List<ExplosionIntent> explosionIntents
+        List<ExplosionIntent> explosionIntents,
+        CinemachineTargetGroup targetGroup
     )
     {
         this.vinePrefab = vinePrefab;
@@ -35,7 +38,8 @@ public sealed class VineSystem
         this.characters = characters;
         this.spawnCharacterRequests = spawnCharacterRequests;
         this.explosionIntents = explosionIntents;
-    }
+        this.targetGroup = targetGroup;
+        }
 
     public void FixedTick()
     {
@@ -57,6 +61,7 @@ public sealed class VineSystem
                 foreach (var collision in collisions)
                 {
                     Character character = collision.GetComponentInParent<Character>();
+                    targetGroup.RemoveMember(character.transform);
                     characters.Remove(character);
                     Vector3 position = character.transform.position;
 

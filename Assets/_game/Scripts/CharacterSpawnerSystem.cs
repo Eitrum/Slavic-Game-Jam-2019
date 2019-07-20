@@ -59,7 +59,7 @@ public sealed class CharacterSpawnSystem
                 player.possesedCharacter = character;
             }
         }
-        targetGroup.AddMember(character.transform, 1f, 1f);
+        targetGroup.AddMember(character.transform, 1f, 10f);
         characters.Add(character);
     }
 }
