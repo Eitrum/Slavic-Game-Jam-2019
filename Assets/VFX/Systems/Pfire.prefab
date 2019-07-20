@@ -24450,7 +24450,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 12
+      scalar: 18
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -43506,7 +43506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7205168558760414566
 Transform:
   m_ObjectHideFlags: 0
@@ -48525,7 +48525,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.35, g: 0.08784314, b: 0, a: 1}
+      maxColor: {r: 0.67800003, g: 0.16536586, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -48587,7 +48587,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 45
+      scalar: 22
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -49287,7 +49287,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 3
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -57948,7 +57948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4832360151097537389
 Transform:
   m_ObjectHideFlags: 0
@@ -67558,7 +67558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3396981606394016102
 Transform:
   m_ObjectHideFlags: 0
@@ -67826,7 +67826,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 6
-      minScalar: 12
+      minScalar: 9
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -67878,7 +67878,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
+      scalar: 2
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -67931,7 +67931,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
+      scalar: 2
       minScalar: 3
       maxCurve:
         serializedVersion: 2
