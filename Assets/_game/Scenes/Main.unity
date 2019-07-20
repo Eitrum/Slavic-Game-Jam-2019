@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.30655926, g: 0.5366332, b: 0.7830189, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -378,6 +378,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7718390322364612238, guid: 34cf621995c8441b28834fc3b2646ee5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904275a7db0149d4fb8baa8f1687bb88, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34cf621995c8441b28834fc3b2646ee5, type: 3}
 --- !u!1 &963194225
@@ -786,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652573800}
   m_LocalRotation: {x: 0.63398933, y: 0.00000005727982, z: -0.000000047205916, w: 0.7733419}
-  m_LocalPosition: {x: -0.006556362, y: 223747.34, z: -44749.21}
+  m_LocalPosition: {x: -0.0071717384, y: 244745.08, z: -48948.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647641715}
