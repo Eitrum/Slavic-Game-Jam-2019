@@ -30,6 +30,7 @@ public class Entry : MonoBehaviour
     public GameObject startVirtualCam;
     public CinemachineTargetGroup targetGroup;
     public GameObject winText;
+    public CinemachineImpulseSource impulseSource;
 
     [Header("Prefabs")]
     public Seed seedPrefab;
@@ -71,7 +72,7 @@ public class Entry : MonoBehaviour
 
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
-        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
+        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents, impulseSource);
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
