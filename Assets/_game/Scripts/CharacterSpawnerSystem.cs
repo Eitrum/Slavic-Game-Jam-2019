@@ -56,7 +56,7 @@ public sealed class CharacterSpawnSystem
             if (player.playerIndex == playerIndex)
             {
                 player.possesedCharacter = character;
-                player.inputIndex = -1;
+                //player.inputIndex = -1;
             }
         }
         targetGroup.AddMember(character.transform, 1f, 10f);
