@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrassMat
+  m_Name: FlowerMat 1
   m_Shader: {fileID: 4800000, guid: 82bd4c33655900f46849d7596c9abd77, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -72,8 +72,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 1
-    - _Range: 0.905
+    - _Power: 0.564
+    - _Range: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -88,6 +88,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0.2663522, g: 0.7264151, b: 0, a: 0}
-    - _Color2: {r: 0, g: 0.5943396, b: 0.47940516, a: 0}
+    - _Color0: {r: 0, g: 0.05108298, b: 0.6313726, a: 0}
+    - _Color2: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
