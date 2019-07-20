@@ -95,7 +95,6 @@ public sealed class VineSystem
         // Explode if in fire
         {
             int layerMask = LayerMask.GetMask("Fire");
-            List<Vine> vinesToDestroy = new List<Vine>();
             foreach (var vine in vines) {
                 var colliders = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x, layerMask, QueryTriggerInteraction.Collide);
                 if (colliders.Length > 0)
@@ -107,13 +106,7 @@ public sealed class VineSystem
                         timeToExplosion = 0.1f,
                         vine = vine
                     });
-                    vinesToDestroy.Add(vine);
                 }
-            }
-
-            foreach (var vine in vinesToDestroy)
-            {
-                vines.Remove(vine);
             }
         }
     }

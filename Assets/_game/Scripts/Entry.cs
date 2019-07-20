@@ -78,7 +78,7 @@ public class Entry : MonoBehaviour
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
         seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
-        fireSystem = new FireSystem(explosionIntents, explosionPrefab);
+        fireSystem = new FireSystem(explosionIntents, explosionPrefab, vines);
         yield return new WaitForSeconds(2f);
         
     }
