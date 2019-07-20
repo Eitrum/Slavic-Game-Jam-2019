@@ -5,15 +5,18 @@ using UnityEngine;
 public class CharacterMovementSystem
 {
     readonly List<Character> characters;
+    readonly List<Seed> seeds;
     readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
     readonly Transform camera;
 
     public CharacterMovementSystem(
         List<Character> characters,
+        List<Seed> seeds,
         List<SeedPlayerImpact> seedPlayerImpactQueue,
         Transform camera
     ) {
         this.characters = characters;
+        this.seeds = seeds;
         this.seedPlayerImpactQueue = seedPlayerImpactQueue;
         this.camera = camera;
     }

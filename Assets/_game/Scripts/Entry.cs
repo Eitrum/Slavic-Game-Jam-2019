@@ -10,6 +10,8 @@ public class Entry : MonoBehaviour
     private readonly List<Character> characters = new List<Character>();
     private readonly List<SeedTerrainImpact> seedTerrainImpactQueue = new List<SeedTerrainImpact>();
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue = new List<SeedPlayerImpact>();
+    private readonly List<SeedVineStay> seedVineStayQueue = new List<SeedVineStay>();
+    private readonly List<Seed> seeds = new List<Seed>();
     private readonly List<Vine> vines = new List<Vine>();
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
@@ -37,6 +39,7 @@ public class Entry : MonoBehaviour
     private PlayerSystem playerSystem;
     private PlayerInputSystem playerInputSystem;
     private CharacterSpawnSystem characterSpawnSystem;
+    private SeedMovementSystem seedMovementSystem;
     
     IEnumerator Start()
     {
@@ -54,18 +57,21 @@ public class Entry : MonoBehaviour
         }
 
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
-        characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue, cam.transform);
-        seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests);
+        characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
+        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
+        seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
         yield return new WaitForSeconds(2f);
         startVirtualCam.SetActive(false);
     }
 
     private void FixedUpdate()
     {
+        seedMovementSystem.FixedTick();
         characterMovementSystem.FixedTick();
+        vineSystem.Tick();
     }
 
     void Update()
@@ -74,6 +80,5 @@ public class Entry : MonoBehaviour
         playerInputSystem.Tick();
         playerSystem.Tick();
         seedFiringSystem.Tick();
-        vineSystem.Tick();
     }
 }

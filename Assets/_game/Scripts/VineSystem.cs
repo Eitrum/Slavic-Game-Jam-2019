@@ -7,6 +7,7 @@ public sealed class VineSystem
 
     private readonly Vine vinePrefab;
     private readonly List<SeedTerrainImpact> seedImpactQueue;
+    private readonly List<Seed> seeds;
     private readonly List<Vine> vines;
     private readonly VineSettings vineSettings;
     private readonly List<Character> characters;
@@ -17,6 +18,7 @@ public sealed class VineSystem
     public VineSystem(
         Vine vinePrefab,
         List<SeedTerrainImpact> seedImpactQueue,
+        List<Seed> seeds,
         List<Vine> vines,
         VineSettings vineSettings,
         List<Character> characters,
@@ -25,6 +27,7 @@ public sealed class VineSystem
     {
         this.vinePrefab = vinePrefab;
         this.seedImpactQueue = seedImpactQueue;
+        this.seeds = seeds;
         this.vines = vines;
         this.vineSettings = vineSettings;
         this.characters = characters;
