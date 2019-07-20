@@ -62,14 +62,14 @@ public sealed class VineSystem
                     characters.Remove(character);
                     Vector3 position = character.transform.position;
 
-                    spawnCharacterRequests.Add(new SpawnCharacterRequest
-                    {
-                        spawnTimer = 1.5f,
-                        playerIndex = character.playerIndex
-                    });
+                    //spawnCharacterRequests.Add(new SpawnCharacterRequest
+                    //{
+                    //    spawnTimer = 1.5f,
+                    //    playerIndex = character.playerIndex
+                    //});
 
                     // Spawn vine at death.
-                    MonoBehaviour.Instantiate(character.deathEffectPrefab, position, Quaternion.identity);
+                    Object.Instantiate(character.deathEffectPrefab, position, Quaternion.identity);
                     vinesToSpawn.Add(position);
 
                     Object.DestroyImmediate(character.gameObject);
