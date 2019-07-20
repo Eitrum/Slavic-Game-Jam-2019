@@ -6,6 +6,7 @@ public class SeedFiringSystem
     private readonly List<Seed> seeds;
     private readonly Seed seedPrefab;
     private readonly SeedSettings seedSettings;
+    private readonly ShootSettings shootSettings;
     private readonly List<SeedTerrainImpact> seedTerrainImpactQueue;
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
     private readonly List<SeedVineStay> seedVineStayQueue;
@@ -15,6 +16,7 @@ public class SeedFiringSystem
         List<Seed> seeds,
         Seed seedPrefab,
         SeedSettings seedSettings,
+        ShootSettings shootSettings,
         List<SeedTerrainImpact> seedTerrainImpactQueue,
         List<SeedPlayerImpact> seedPlayerImpactQueue,
         List<SeedVineStay> seedVineStayQueue,
@@ -24,6 +26,7 @@ public class SeedFiringSystem
         this.seeds = seeds;
         this.seedPrefab = seedPrefab;
         this.seedSettings = seedSettings;
+        this.shootSettings = shootSettings;
         this.seedTerrainImpactQueue = seedTerrainImpactQueue;
         this.seedPlayerImpactQueue = seedPlayerImpactQueue;
         this.seedVineStayQueue = seedVineStayQueue;
@@ -49,6 +52,8 @@ public class SeedFiringSystem
             float directionAngle = Vector3.SignedAngle(Vector3.forward, seed.direction, Vector3.up);
             directionAngle = Mathf.Round(directionAngle / 45f) * 45f;
             seed.direction = new Vector3(Mathf.Cos(directionAngle), 0f, Mathf.Sin(directionAngle));
+
+            shootIntent.character.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.character.playerIndex]);
         }
         shootIntents.Clear();
     }

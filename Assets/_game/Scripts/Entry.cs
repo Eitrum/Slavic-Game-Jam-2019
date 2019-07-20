@@ -61,7 +61,7 @@ public class Entry : MonoBehaviour
 
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
-        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
+        seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents);
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);

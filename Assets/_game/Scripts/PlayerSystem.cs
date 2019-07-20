@@ -21,7 +21,7 @@ public class PlayerSystem {
             if(character == null) {
                 continue;
             }
-            character.movementIntent = new Vector3(Input.GetAxisRaw("Horizontal" + player.playerIndex), 0f, Input.GetAxisRaw("Vertical" + player.playerIndex));
+            character.movementIntent = new Vector3(Input.GetAxis("Horizontal" + player.playerIndex), 0f, Input.GetAxis("Vertical" + player.playerIndex));
             character.shootIntent = Input.GetAxisRaw("Shoot" + (player.playerIndex + 1)) > 0.5f;
             if(character.shootTimer > 0f) {
                 character.shootIntent = false;
@@ -32,7 +32,7 @@ public class PlayerSystem {
             }
 
 
-            character.aimIntent = new Vector3(Input.GetAxisRaw("AimHorizontal" + player.playerIndex), 0f, Input.GetAxisRaw("AimVertical" + player.playerIndex));
+            character.aimIntent = new Vector3(Input.GetAxis("AimHorizontal" + player.playerIndex), 0f, Input.GetAxis("AimVertical" + player.playerIndex));
 
         }
     }
