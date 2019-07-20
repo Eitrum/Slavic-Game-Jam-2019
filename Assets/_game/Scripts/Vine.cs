@@ -26,8 +26,7 @@ public class Vine : MonoBehaviour {
         if(timer < 1f) {
             timer += Time.deltaTime;
         }
-        else if (!paused){
-            paused = true;
+        else{
             foreach(var ps in particleSystemsToPause) {
                 ps.Pause();
             }
