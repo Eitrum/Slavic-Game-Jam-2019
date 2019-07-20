@@ -54,9 +54,7 @@ public class SeedFiringSystem
             seed.spawnPosition = shootIntent.position;
             rb.velocity = seedSettings.velocityMultiplier * shootIntent.direction;
             seed.direction = shootIntent.direction.normalized;
-            float directionAngle = Vector3.SignedAngle(Vector3.forward, seed.direction, Vector3.up);
-            directionAngle = Mathf.Round(directionAngle / 45f) * 45f;
-            seed.direction = new Vector3(Mathf.Cos(directionAngle), 0f, Mathf.Sin(directionAngle));
+            seed.transform.forward = seed.direction;
 
             shootIntent.player.possesedCharacter.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.player.playerIndex]);
         }

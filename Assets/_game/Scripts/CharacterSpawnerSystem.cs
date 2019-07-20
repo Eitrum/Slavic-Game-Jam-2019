@@ -8,7 +8,7 @@ public sealed class CharacterSpawnSystem
     private readonly List<Character> characters;
     private readonly List<Transform> spawnPositions;
     private readonly List<SpawnCharacterRequest> spawnRequests;
-    private readonly Character characterPrefab;
+    private readonly Character[] characterPrefabs;
     private readonly List<Player> players;
     private readonly CinemachineTargetGroup targetGroup;
 
@@ -16,7 +16,7 @@ public sealed class CharacterSpawnSystem
         List<Character> characters,
         List<Transform> spawnPositions,
         List<SpawnCharacterRequest> spawnRequests,
-        Character characterPrefab,
+        Character[] characterPrefabs,
         List<Player> players,
         CinemachineTargetGroup targetGroup
     )
@@ -24,7 +24,7 @@ public sealed class CharacterSpawnSystem
         this.characters = characters;
         this.spawnPositions = spawnPositions;
         this.spawnRequests = spawnRequests;
-        this.characterPrefab = characterPrefab;
+        this.characterPrefabs = characterPrefabs;
         this.players = players;
         this.targetGroup = targetGroup;
     }
@@ -50,8 +50,7 @@ public sealed class CharacterSpawnSystem
     private void SpawnCharacter(int playerIndex)
     {
         Vector3 spawnPosition = spawnPositions[playerIndex].position;
-        Character character = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
-
+        Character character = Object.Instantiate(characterPrefabs[playerIndex], spawnPosition, Quaternion.identity);
         foreach (var player in players)
         {
             if (player.playerIndex == playerIndex)

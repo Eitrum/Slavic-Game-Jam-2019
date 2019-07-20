@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febbda24daaea4093b2ad5859643dcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 7306254796679084524}
   particleSystemsToPause:
   - {fileID: 4872726080802840608}
   - {fileID: 5612256283350846497}

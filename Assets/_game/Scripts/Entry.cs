@@ -34,7 +34,7 @@ public class Entry : MonoBehaviour
 
     [Header("Prefabs")]
     public Seed seedPrefab;
-    public Character characterPrefab;
+    public Character[] characterPrefabs;
     public Vine vinePrefab;
     public Explosion explosionPrefab;
 
@@ -70,7 +70,7 @@ public class Entry : MonoBehaviour
         }
 
 
-        characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
+        characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefabs, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
         seedFiringSystem = new SeedFiringSystem(seeds, seedPrefab, seedSettings, shootSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, seedVineStayQueue, shootIntents, impulseSource);
         vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, seeds, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
