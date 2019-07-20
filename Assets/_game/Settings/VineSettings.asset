@@ -15,4 +15,4 @@ MonoBehaviour:
   startScale: 0
   endScaleMultiplier: 0.1
   minEndScale: 2
-  growDuration: 0.5
+  growDuration: 0.25
