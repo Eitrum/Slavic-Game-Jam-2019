@@ -67,6 +67,7 @@ public sealed class VineSystem
                     });
 
                     // Spawn vine at death.
+                    MonoBehaviour.Instantiate(character.deathEffectPrefab, position, Quaternion.identity);
                     vinesToSpawn.Add(position);
 
                     Object.DestroyImmediate(character.gameObject);

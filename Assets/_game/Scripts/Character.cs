@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     public Transform shootTransform;
     public Rigidbody rb;
     public float speed;
+    public GameObject deathEffectPrefab = null;
+
     internal int playerIndex;
 
     internal Vector3 movementIntent;
