@@ -17,12 +17,16 @@ public class PlayerSystem {
     public void Tick() {
         for(int i = 0; i < players.Count; i++) {
             Player player = players[i];
+            if(player.inputIndex == -1) {
+                player.inputIndex = FindController(player, players);
+                continue;
+            }
             Character character = player.possesedCharacter;
             if(character == null) {
                 continue;
             }
-            character.movementIntent = new Vector3(Input.GetAxis("Horizontal" + player.playerIndex), 0f, Input.GetAxis("Vertical" + player.playerIndex));
-            character.shootIntent = Input.GetAxisRaw("Shoot" + (player.playerIndex + 1)) > 0.5f;
+            character.movementIntent = new Vector3(Input.GetAxis("Horizontal" + player.inputIndex), 0f, Input.GetAxis("Vertical" + player.inputIndex));
+            character.shootIntent = Input.GetAxisRaw("Shoot" + (player.inputIndex + 1)) > 0.5f;
             if(character.shootTimer > 0f) {
                 character.shootIntent = false;
                 character.shootTimer -= Time.deltaTime;
@@ -31,9 +35,31 @@ public class PlayerSystem {
                 character.shootTimer = shootSettings.shootInterval;
             }
 
-
-            character.aimIntent = new Vector3(Input.GetAxis("AimHorizontal" + player.playerIndex), 0f, Input.GetAxis("AimVertical" + player.playerIndex));
-
+            character.aimIntent = new Vector3(Input.GetAxis("AimHorizontal" + player.inputIndex), 0f, Input.GetAxis("AimVertical" + player.inputIndex));
         }
+    }
+
+    private int FindController(Player targetPlayer, IReadOnlyList<Player> otherPlayers) {
+        int taken = 0;
+        for(int i = 0; i < otherPlayers.Count; i++) {
+            taken |= (otherPlayers[i].inputIndex >= 0 ? 1 << (otherPlayers[i].inputIndex) : 0);
+        }
+
+        for(int i = 0; i < 4; i++) {
+            if((taken & (1 << i)) == (1 << i)) {
+                continue;
+            }
+
+            var val = Input.GetAxis("AimHorizontal" + i) +
+                Input.GetAxis("AimVertical" + i) +
+                Input.GetAxis("Horizontal" + i) +
+                Input.GetAxis("Vertical" + i);
+            if(Mathf.Abs(val) >= float.Epsilon) {
+                Debug.Log($"Player {targetPlayer.playerIndex} Input Index Assigned: {i}");
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

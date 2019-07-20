@@ -44,7 +44,7 @@ public class SeedFiringSystem
             impulseSource.GenerateImpulse();
             Seed seed = Object.Instantiate(seedPrefab);
             seeds.Add(seed);
-            Physics.IgnoreCollision(seed.collider, shootIntent.character.GetComponentInChildren<Collider>());
+            Physics.IgnoreCollision(seed.collider, shootIntent.player.possesedCharacter.GetComponentInChildren<Collider>());
             seed.seeds = seeds;
             seed.seedTerrainImpactQueue = seedTerrainImpactQueue;
             seed.seedPlayerImpactQueue = seedPlayerImpactQueue;
@@ -58,7 +58,7 @@ public class SeedFiringSystem
             directionAngle = Mathf.Round(directionAngle / 45f) * 45f;
             seed.direction = new Vector3(Mathf.Cos(directionAngle), 0f, Mathf.Sin(directionAngle));
 
-            shootIntent.character.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.character.playerIndex]);
+            shootIntent.player.possesedCharacter.GetComponent<AudioSource>().PlayOneShot(shootSettings.playerShootSFX[shootIntent.player.playerIndex]);
         }
         shootIntents.Clear();
     }
@@ -66,7 +66,7 @@ public class SeedFiringSystem
 
 public struct ShootIntent
 {
-    public Character character;
+    public Player player;
     public Vector3 position;
     public Vector3 direction;
 }

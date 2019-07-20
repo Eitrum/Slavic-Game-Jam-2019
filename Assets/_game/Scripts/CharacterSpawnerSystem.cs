@@ -51,12 +51,13 @@ public sealed class CharacterSpawnSystem
     {
         Vector3 spawnPosition = spawnPositions[playerIndex].position;
         Character character = Object.Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
-        character.playerIndex = playerIndex;
+
         foreach (var player in players)
         {
             if (player.playerIndex == playerIndex)
             {
                 player.possesedCharacter = character;
+                player.inputIndex = -1;
             }
         }
         targetGroup.AddMember(character.transform, 1f, 1f);
