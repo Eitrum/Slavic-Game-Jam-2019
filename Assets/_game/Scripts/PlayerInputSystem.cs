@@ -20,8 +20,8 @@ public class PlayerInputSystem {
                 Transform shootTransform = player.possesedCharacter.shootTransform;
                 Vector3 direction = player.possesedCharacter.aimIntent;
 
-                if(direction.sqrMagnitude < Mathf.Epsilon)
-                    direction = shootTransform.forward;
+                if (direction.magnitude < .4f)
+                    continue;
 
                 shootIntents.Add(new ShootIntent {
                     character = player.possesedCharacter,
