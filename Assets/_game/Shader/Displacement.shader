@@ -13,12 +13,14 @@ Shader "Game/Displacement"
 			Tags { "RenderType" = "Opaque" }
 			LOD 200
 
+
 			GrabPass{
 				"_BackgroundTexture"
 			}
 
 			Pass
 			{
+				ZWrite Off
 				CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
@@ -71,7 +73,7 @@ Shader "Game/Displacement"
 					half4 offset = tex2Dlod(_MainTex, float4(i.uv , 0, 0)) * _Displacement;
 
 					float fresnel = (1.1 - dot(i.worldNormal,i.worldViewDir));
-					i.grabPos.xyz +=( i.worldViewDir + offset.xyz) / fresnel * _Refraction ;
+					i.grabPos.xyz += (i.worldViewDir + offset.xyz) / fresnel * _Refraction;
 					half4 bgcolor = tex2Dproj(_BackgroundTexture, i.grabPos);
 					return bgcolor;
 				}

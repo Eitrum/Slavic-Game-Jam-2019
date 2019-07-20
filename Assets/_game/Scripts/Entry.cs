@@ -173,6 +173,7 @@ public class Entry : MonoBehaviour
                 }
                 break;
             case GameState.End:
+                playerInputSystem.Tick();
                 playerSystem.Tick();
 
                 Time.timeScale = Mathf.Lerp(1f, .5f, endGameTimer / END_GAME_TIME);

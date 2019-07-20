@@ -10,8 +10,10 @@ public class Vine : MonoBehaviour {
     public bool isDestroying = false;
 
     public ParticleSystem[] particleSystemsToPause;
+    public GameObject greenRing;
     private Material material;
     private float timer = 0f;
+    private bool paused = false;
 
     void Awake() {
         material = particleSystemsToPause[0].GetComponent<ParticleSystemRenderer>().material;
@@ -23,14 +25,14 @@ public class Vine : MonoBehaviour {
     private void Update() {
         if(timer < 1f) {
             timer += Time.deltaTime;
-
         }
-        else {
+        else{
             foreach(var ps in particleSystemsToPause) {
                 ps.Pause();
             }
         }
         if(isDestroying) {
+            greenRing.SetActive(false);
             destroyTimer += Time.deltaTime / destroyDuration;
             material.SetFloat("_ErosionDriver", 1f - destroyTimer);
             if(destroyTimer >= 1f) {
