@@ -38,7 +38,8 @@ public sealed class FireSystem
             {
                 // Explode
                 vines.Remove(explosionIntent.vine);
-                Object.DestroyImmediate(explosionIntent.vine.gameObject);
+                if (explosionIntent.vine != null)
+                    Object.Destroy(explosionIntent.vine.gameObject);
                 Explosion explosion = Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
                 explosions.Add(explosion);
                 explosionIntents.Remove(explosionIntents[i]);
