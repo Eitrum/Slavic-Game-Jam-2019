@@ -12,6 +12,7 @@ public sealed class VineSystem
     private readonly VineSettings vineSettings;
     private readonly List<Character> characters;
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests;
+    private readonly List<ExplosionIntent> explosionIntents;
 
     private const float RAYCAST_DISTANCE = 1.5f;
 
@@ -22,7 +23,8 @@ public sealed class VineSystem
         List<Vine> vines,
         VineSettings vineSettings,
         List<Character> characters,
-        List<SpawnCharacterRequest> spawnCharacterRequests
+        List<SpawnCharacterRequest> spawnCharacterRequests,
+        List<ExplosionIntent> explosionIntents
     )
     {
         this.vinePrefab = vinePrefab;
@@ -32,6 +34,7 @@ public sealed class VineSystem
         this.vineSettings = vineSettings;
         this.characters = characters;
         this.spawnCharacterRequests = spawnCharacterRequests;
+        this.explosionIntents = explosionIntents;
     }
 
     public void Tick()
@@ -81,6 +84,30 @@ public sealed class VineSystem
         foreach (var vine in vines)
         {
             vine.transform.localScale = Vector3.Lerp(vine.transform.localScale, Vector3.one * vineSettings.endScale, (Time.time - vine.spawnTimeStamp) / vineSettings.growDuration);
+        }
+
+        // Explode if in fire
+        {
+            int layerMask = LayerMask.GetMask("Fire");
+            List<Vine> vinesToDestroy = new List<Vine>();
+            foreach (var vine in vines) {
+                var colliders = Physics.OverlapSphere(vine.transform.position, vine.transform.localScale.x / 2f, layerMask, QueryTriggerInteraction.Collide);
+                if (colliders.Length > 0)
+                {
+                    explosionIntents.Add(new ExplosionIntent
+                    {
+                        position = vine.transform.position,
+                        timeToExplosion = 0.25f
+                    });
+                    vinesToDestroy.Add(vine);
+                }
+            }
+
+            foreach (var vine in vinesToDestroy)
+            {
+                vines.Remove(vine);
+                Object.DestroyImmediate(vine.gameObject);
+            }
         }
     }
 
