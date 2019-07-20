@@ -9,6 +9,8 @@ public class Channel {
 
     private int currentClip = 0;
 
+    private int oldSample = 0;
+
     public void Play(int clip) {
         if(clip == currentClip || clip >= clips.Length) {
             return;
@@ -21,6 +23,18 @@ public class Channel {
             audioSource.Play();
             audioSource.timeSamples = sample % clips[clip].samples;
         }
+    }
+
+    public void Update() {
+        var newSample = audioSource.timeSamples;
+        if(newSample < oldSample) {
+            audioSource.clip = clips[UnityEngine.Random.Range(0, clips.Length)];
+            audioSource.Play();
+            audioSource.volume = 1;
+            audioSource.timeSamples = newSample = newSample % audioSource.clip.samples;
+        }
+
+        oldSample = newSample;
     }
 
     public void Initialize(GameObject gameObject) {
