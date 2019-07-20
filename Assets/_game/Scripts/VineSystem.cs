@@ -39,7 +39,7 @@ public sealed class VineSystem
         this.explosionIntents = explosionIntents;
     }
 
-    public void Tick()
+    public void FixedTick()
     {
         // Spawn vines
         {

@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+public enum GameState {
+    Init,
+    Start,
+    Play,
+    End
+}
+
 public class Entry : MonoBehaviour
 {
-    public const int PLAYER_COUNT = 4;
+    public const int PLAYER_COUNT = 2;
 
     private readonly List<Character> characters = new List<Character>();
     private readonly List<SeedTerrainImpact> seedTerrainImpactQueue = new List<SeedTerrainImpact>();
@@ -22,6 +29,7 @@ public class Entry : MonoBehaviour
     public Camera cam;
     public GameObject startVirtualCam;
     public CinemachineTargetGroup targetGroup;
+    public GameObject winText;
 
     [Header("Prefabs")]
     public Seed seedPrefab;
@@ -44,20 +52,22 @@ public class Entry : MonoBehaviour
     private SeedMovementSystem seedMovementSystem;
     private FireSystem fireSystem;
 
+    private GameState state;
+    private GameState prevState;
+
+    private float endGameTimer;
+    private const float END_GAME_TIME = 3f;
+
     IEnumerator Start()
     {
-        for (int i = 0; i < PLAYER_COUNT; ++i)
+        for (int i = 0; i < PLAYER_COUNT; i++)
         {
-            players.Add(new Player
-            {
-                playerIndex = i
-            });
-            spawnCharacterRequests.Add(new SpawnCharacterRequest
-            {
-                spawnTimer = 0f,
-                playerIndex = i
-            });
+        players.Add(new Player
+        {
+            playerIndex = i
+        });
         }
+
 
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seeds, seedPlayerImpactQueue, cam.transform);
@@ -68,22 +78,92 @@ public class Entry : MonoBehaviour
         seedMovementSystem = new SeedMovementSystem(seeds, seedVineStayQueue, seedTerrainImpactQueue);
         fireSystem = new FireSystem(explosionIntents, explosionPrefab);
         yield return new WaitForSeconds(2f);
-        startVirtualCam.SetActive(false);
+        
     }
 
     private void FixedUpdate()
     {
-        seedMovementSystem.FixedTick();
-        characterMovementSystem.FixedTick();
-        vineSystem.Tick();
+        switch (state)
+        {
+            case GameState.Init:
+                break;
+            case GameState.Start:
+                
+                break;
+            case GameState.Play:
+                seedMovementSystem.FixedTick();
+                characterMovementSystem.FixedTick();
+                vineSystem.FixedTick();
+                break;
+            case GameState.End:
+                characterMovementSystem.FixedTick();
+                break;
+            default:
+                break;
+        }
     }
 
     void Update()
     {
-        characterSpawnSystem.Tick();
-        playerInputSystem.Tick();
-        playerSystem.Tick();
-        seedFiringSystem.Tick();
-        fireSystem.Tick();
+        switch (state)
+        {
+            case GameState.Init:
+                if (Input.anyKeyDown)
+                {
+                    startVirtualCam.SetActive(false);
+                    state = GameState.Start;
+                }
+                break;
+            case GameState.Start:
+                for (int i = characters.Count - 1; i >= 0; --i)
+                {
+                    Object.Destroy(characters[i].gameObject);
+                }
+                characters.Clear();
+
+                for (int i = vines.Count - 1; i >= 0; --i)
+                {
+                    Object.Destroy(vines[i].gameObject);
+                }
+                vines.Clear();
+
+                for (int i = 0; i < PLAYER_COUNT; ++i)
+                {
+                    spawnCharacterRequests.Add(new SpawnCharacterRequest
+                    {
+                        spawnTimer = 0f,
+                        playerIndex = i
+                    });
+                }
+
+                state = GameState.Play;
+                break;
+            case GameState.Play:
+                characterSpawnSystem.Tick();
+                playerInputSystem.Tick();
+                playerSystem.Tick();
+                seedFiringSystem.Tick();
+                fireSystem.Tick();
+
+                if (characters.Count <= 1)
+                {
+                    endGameTimer = END_GAME_TIME;
+                    winText.SetActive(true);
+                    state = GameState.End;
+                }
+                break;
+            case GameState.End:
+                playerSystem.Tick();
+
+                endGameTimer -= Time.deltaTime;
+                if (endGameTimer < 0f && Input.anyKeyDown) {
+                    winText.SetActive(false);
+                    state = GameState.Start;
+                }
+                break;
+            default:
+                break;
+        }
+        prevState = state;
     }
 }
