@@ -47,10 +47,13 @@ MonoBehaviour:
   cam: {fileID: 0}
   startVirtualCam: {fileID: 0}
   targetGroup: {fileID: 0}
+  winText: {fileID: 0}
+  impulseSource: {fileID: 0}
   seedPrefab: {fileID: 2898505159013187308, guid: 97b5b8c0fca044fe3acb9ed6dff02ee4,
     type: 3}
-  characterPrefab: {fileID: 6173939114200320581, guid: b0bcd06f3c4424ef0b27d34a3751e8d0,
-    type: 3}
+  characterPrefabs:
+  - {fileID: 6173939114200320581, guid: b0bcd06f3c4424ef0b27d34a3751e8d0, type: 3}
+  - {fileID: 4250539854093827542, guid: 8db27559bc8a1b44eb63ab7228fdbea6, type: 3}
   vinePrefab: {fileID: 5229569539311815505, guid: fda7a4b06a15d49489274b208f10d201,
     type: 3}
   explosionPrefab: {fileID: 1854266081302279516, guid: 86b8620e7b0d44d15a7c83f4bed6869e,
