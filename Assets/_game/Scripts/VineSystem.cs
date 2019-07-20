@@ -97,7 +97,8 @@ public sealed class VineSystem
                     explosionIntents.Add(new ExplosionIntent
                     {
                         position = vine.transform.position,
-                        timeToExplosion = 0.25f
+                        timeToExplosion = 0.25f,
+                        vine = vine
                     });
                     vinesToDestroy.Add(vine);
                 }
@@ -106,7 +107,6 @@ public sealed class VineSystem
             foreach (var vine in vinesToDestroy)
             {
                 vines.Remove(vine);
-                Object.DestroyImmediate(vine.gameObject);
             }
         }
     }

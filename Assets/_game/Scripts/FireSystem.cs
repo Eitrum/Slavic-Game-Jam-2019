@@ -26,6 +26,7 @@ public sealed class FireSystem
             if (explosionIntent.timeToExplosion <= 0f)
             {
                 // Explode
+                Object.DestroyImmediate(explosionIntent.vine.gameObject);
                 Object.Instantiate(explosionPrefab, explosionIntent.position, Random.rotation);
                 explosionIntents.Remove(explosionIntents[i]);
             }
@@ -39,6 +40,7 @@ public sealed class FireSystem
 
 public struct ExplosionIntent
 {
+    public Vine vine;
     public float timeToExplosion;
     public Vector3 position;
 }
