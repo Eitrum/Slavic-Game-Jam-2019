@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PvineExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 8534904945463525717, guid: 6f2c61fc7a4ff5642a9fd5c65b986807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8534904945463525718, guid: 6f2c61fc7a4ff5642a9fd5c65b986807,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,7 +226,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: e6566837fca877c47a48807204b21758,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e6566837fca877c47a48807204b21758,
         type: 3}
