@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     public Transform shootTransform;
     public Rigidbody rb;
+    public ParticleSystem shellParticle;
     public float speed;
     public GameObject deathEffectPrefab = null;
 
