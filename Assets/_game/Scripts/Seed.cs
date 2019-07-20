@@ -18,6 +18,11 @@ public sealed class Seed : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        int layerMask = LayerMask.GetMask("Vines");
+        if (Physics.CheckSphere(transform.position, 2f, layerMask))
+        {
+            return;
+        }
         Rigidbody otherRb = collision.collider.attachedRigidbody;
         Character character = null;
         if (otherRb != null)
