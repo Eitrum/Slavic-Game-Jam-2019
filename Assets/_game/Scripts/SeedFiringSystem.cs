@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Cinemachine;
 
 public class SeedFiringSystem
 {
@@ -11,6 +12,7 @@ public class SeedFiringSystem
     private readonly List<SeedPlayerImpact> seedPlayerImpactQueue;
     private readonly List<SeedVineStay> seedVineStayQueue;
     private readonly List<ShootIntent> shootIntents;
+    private readonly CinemachineImpulseSource impulseSource;
 
     public SeedFiringSystem(
         List<Seed> seeds,
@@ -20,7 +22,8 @@ public class SeedFiringSystem
         List<SeedTerrainImpact> seedTerrainImpactQueue,
         List<SeedPlayerImpact> seedPlayerImpactQueue,
         List<SeedVineStay> seedVineStayQueue,
-        List<ShootIntent> shootIntents
+        List<ShootIntent> shootIntents,
+        CinemachineImpulseSource impulseSource
     )
     {
         this.seeds = seeds;
@@ -31,12 +34,14 @@ public class SeedFiringSystem
         this.seedPlayerImpactQueue = seedPlayerImpactQueue;
         this.seedVineStayQueue = seedVineStayQueue;
         this.shootIntents = shootIntents;
+        this.impulseSource = impulseSource;
     }
 
     public void Tick()
     {
         foreach (var shootIntent in shootIntents)
         {
+            impulseSource.GenerateImpulse();
             Seed seed = Object.Instantiate(seedPrefab);
             seeds.Add(seed);
             Physics.IgnoreCollision(seed.collider, shootIntent.character.GetComponentInChildren<Collider>());
