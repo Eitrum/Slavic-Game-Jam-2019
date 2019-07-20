@@ -46,7 +46,7 @@ public class CharacterMovementSystem
             Vector3 planeVelocity = new Vector3(character.rb.velocity.x, 0f, character.rb.velocity.z);
             if (planeVelocity.magnitude > 0.5f)
             {
-                character.transform.localScale = Mathf.Lerp(character.transform.localScale.x, 0.1f * Mathf.Sin(Time.time * 10f) + 1f, Time.fixedDeltaTime * 100f ) * Vector3.one;
+                character.transform.localScale = Mathf.Lerp(character.transform.localScale.x, 0.05f * Mathf.Sin(Time.time * 20f) + 1f, Time.fixedDeltaTime * 100f ) * Vector3.one;
             }
             else
             {
