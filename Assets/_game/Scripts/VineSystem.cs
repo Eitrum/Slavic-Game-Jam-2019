@@ -35,26 +35,9 @@ public sealed class VineSystem
     {
         // Spawn vines
         {
-            int layerMask = LayerMask.GetMask("Vines");
             foreach (var impact in seedImpactQueue)
             {
-                bool hasReachedEnd = false;
-                Vector3 spawnPoint = Vector3.zero;
-                Vector3 raycastDirection = impact.direction;
-                Vector3 raycastOrigin = impact.position;
-                while (!hasReachedEnd)
-                {
-                    if (Physics.Raycast(raycastOrigin, raycastDirection, RAYCAST_DISTANCE, layerMask))
-                    {
-                        raycastOrigin += raycastDirection * RAYCAST_DISTANCE;
-                    }
-                    else
-                    {
-                        hasReachedEnd = true;
-                    }
-                }
-                spawnPoint = raycastOrigin + raycastDirection * RAYCAST_DISTANCE;
-                SpawnVine(spawnPoint);
+                SpawnVine(impact.position);
             }
             seedImpactQueue.Clear();
         }
