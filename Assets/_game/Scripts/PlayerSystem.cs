@@ -17,16 +17,14 @@ public class PlayerSystem {
     public void Tick() {
         for(int i = 0; i < players.Count; i++) {
             Player player = players[i];
-            if(player.inputIndex == -1) {
-                player.inputIndex = FindController(player, players);
-                continue;
-            }
+            
             Character character = player.possesedCharacter;
             if(character == null) {
                 continue;
             }
-            character.movementIntent = new Vector3(Input.GetAxis("Horizontal" + player.inputIndex), 0f, Input.GetAxis("Vertical" + player.inputIndex));
-            character.shootIntent = Input.GetAxisRaw("Shoot" + (player.inputIndex + 1)) > 0.5f;
+            Rewired.Player rPlayer = Rewired.ReInput.players.GetPlayer(player.playerIndex);
+            character.movementIntent = new Vector3( rPlayer.GetAxis(RewiredConsts.Action.MoveHorizontal), 0f, rPlayer.GetAxis(RewiredConsts.Action.MoveVertical));
+            character.shootIntent = rPlayer.GetButtonDown(RewiredConsts.Action.Shoot);
             if(character.shootTimer > 0f) {
                 character.shootIntent = false;
                 character.shootTimer -= Time.deltaTime;
@@ -35,7 +33,7 @@ public class PlayerSystem {
                 character.shootTimer = shootSettings.shootInterval;
             }
 
-            character.aimIntent = new Vector3(Input.GetAxis("AimHorizontal" + player.inputIndex), 0f, Input.GetAxis("AimVertical" + player.inputIndex));
+            character.aimIntent = new Vector3(rPlayer.GetAxis(RewiredConsts.Action.AimHorizontal), 0f, rPlayer.GetAxis(RewiredConsts.Action.AimVertical));
         }
     }
 
