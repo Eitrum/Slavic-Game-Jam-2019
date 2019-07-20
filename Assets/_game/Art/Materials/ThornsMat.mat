@@ -77,11 +77,17 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TransAmbient: 0.2
+    - _TransDirect: 1
+    - _TransNormalDistortion: 0.1
+    - _TransScattering: 2
+    - _TransShadow: 0.9
+    - _Translucency: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 0.26415092, g: 0, b: 0.015994143, a: 0}
-    - _Color2: {r: 0.084905684, g: 0.0016801498, b: 0, a: 0}
+    - _Color0: {r: 0.023543864, g: 0.2627451, b: 0, a: 0}
+    - _Color2: {r: 0.08627451, g: 0.04903915, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
