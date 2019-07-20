@@ -21,7 +21,8 @@ public sealed class FireSystem
     {
         foreach (var explosion in explosions)
         {
-            explosion.col.enabled = false;
+            if (explosion != null)
+                explosion.col.enabled = false;
         }
         explosions.Clear();
 
