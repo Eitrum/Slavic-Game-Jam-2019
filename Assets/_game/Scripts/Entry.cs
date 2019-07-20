@@ -14,6 +14,7 @@ public class Entry : MonoBehaviour
     private readonly List<Player> players = new List<Player>();
     private readonly List<ShootIntent> shootIntents = new List<ShootIntent>();
     private readonly List<SpawnCharacterRequest> spawnCharacterRequests = new List<SpawnCharacterRequest>();
+    private readonly List<ExplosionIntent> explosionIntents = new List<ExplosionIntent>();
 
     public List<Transform> spawnPoints;
     public Camera cam;
@@ -24,6 +25,7 @@ public class Entry : MonoBehaviour
     public Seed seedPrefab;
     public Character characterPrefab;
     public Vine vinePrefab;
+    public Explosion explosionPrefab;
 
     [Header("Settings")]
     public SeedSettings seedSettings;
@@ -37,7 +39,8 @@ public class Entry : MonoBehaviour
     private PlayerSystem playerSystem;
     private PlayerInputSystem playerInputSystem;
     private CharacterSpawnSystem characterSpawnSystem;
-    
+    private FireSystem fireSystem;
+
     IEnumerator Start()
     {
         for (int i = 0; i < PLAYER_COUNT; ++i)
@@ -56,9 +59,10 @@ public class Entry : MonoBehaviour
         characterSpawnSystem = new CharacterSpawnSystem(characters, spawnPoints, spawnCharacterRequests, characterPrefab, players, targetGroup);
         characterMovementSystem = new CharacterMovementSystem(characters, seedPlayerImpactQueue, cam.transform);
         seedFiringSystem = new SeedFiringSystem(seedPrefab, seedSettings, seedTerrainImpactQueue, seedPlayerImpactQueue, shootIntents);
-        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests);
+        vineSystem = new VineSystem(vinePrefab, seedTerrainImpactQueue, vines, vineSettings, characters, spawnCharacterRequests, explosionIntents);
         playerSystem = new PlayerSystem(players, shootSettings);
         playerInputSystem = new PlayerInputSystem(players, shootIntents);
+        fireSystem = new FireSystem(explosionIntents, explosionPrefab);
         yield return new WaitForSeconds(2f);
         startVirtualCam.SetActive(false);
     }
@@ -75,5 +79,6 @@ public class Entry : MonoBehaviour
         playerSystem.Tick();
         seedFiringSystem.Tick();
         vineSystem.Tick();
+        fireSystem.Tick();
     }
 }
