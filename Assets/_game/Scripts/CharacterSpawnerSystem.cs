@@ -59,7 +59,7 @@ public sealed class CharacterSpawnSystem
                 player.inputIndex = -1;
             }
         }
-        targetGroup.AddMember(character.transform, 1f, 1f);
+        targetGroup.AddMember(character.transform, 1f, 10f);
         characters.Add(character);
     }
 }
