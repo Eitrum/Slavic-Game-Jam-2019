@@ -54,7 +54,7 @@ public class PlayerSystem {
                 Input.GetAxis("AimVertical" + i) +
                 Input.GetAxis("Horizontal" + i) +
                 Input.GetAxis("Vertical" + i);
-            if(Mathf.Abs(val) >= float.Epsilon) {
+            if(Mathf.Abs(val) >= 0.4f) {
                 Debug.Log($"Player {targetPlayer.playerIndex} Input Index Assigned: {i}");
                 return i;
             }
