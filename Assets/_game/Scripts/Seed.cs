@@ -14,7 +14,7 @@ public sealed class Seed : MonoBehaviour
     internal List<Vine> overlappedVines = new List<Vine>();
     internal bool wasOverlappingVines;
     internal float yVelocityWhenEnterVine;
-    internal float spawnTimeStamp;
+    internal Vector3 spawnPosition;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -38,7 +38,7 @@ public sealed class Seed : MonoBehaviour
             {
                 position = rb.position,
                 direction = direction,
-                seedFlightDuration = Time.time - spawnTimeStamp
+                seedFlightLength = Vector3.Magnitude(transform.position - spawnPosition)
             });
         }
         seeds.Remove(this);
@@ -63,7 +63,7 @@ public struct SeedTerrainImpact
 {
     public Vector3 position;
     public Vector3 direction;
-    public float seedFlightDuration;
+    public float seedFlightLength;
 }
 
 public struct SeedPlayerImpact

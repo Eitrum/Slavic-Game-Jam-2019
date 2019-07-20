@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StoneRuin01_Mat
+  m_Name: Player2MouthMat
   m_Shader: {fileID: 4800000, guid: 82bd4c33655900f46849d7596c9abd77, type: 3}
-  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b97fa93bd4d3add45a989dc9e8593132, type: 3}
+        m_Texture: {fileID: 2800000, guid: cc5a3f7e5d79a3448a5dd86e0e183e88, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,29 +65,29 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.383
-    - _GlossyReflections: 0
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
     - _GradientLerp: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 1
+    - _Power: 0.564
     - _Range: 1
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TransAmbient: 0.2
     - _TransDirect: 1
     - _TransNormalDistortion: 0.1
     - _TransScattering: 2
-    - _TransShadow: 1
+    - _TransShadow: 0.9
     - _Translucency: 1
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.2675329, g: 0.33962262, b: 0.28629553, a: 1}
-    - _Color0: {r: 0.34581473, g: 0.3962264, b: 0.2747419, a: 1}
-    - _Color2: {r: 0.040494833, g: 0.08076714, b: 0.09433961, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0.19078365, g: 0.509434, b: 0, a: 0}
+    - _Color2: {r: 0.056675196, g: 0.24528301, b: 0.04049483, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

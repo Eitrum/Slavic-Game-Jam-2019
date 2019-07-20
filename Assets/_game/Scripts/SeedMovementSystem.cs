@@ -52,7 +52,7 @@ public class SeedMovementSystem
                 seedImpactQueue.Add(new SeedTerrainImpact
                 {
                     position = seed.transform.position,
-                    seedFlightDuration = Time.time - seed.spawnTimeStamp
+                    seedFlightLength = Vector3.Magnitude(seed.transform.position - seed.spawnPosition)
                 });
                 seeds.Remove(seed);
                 Object.Destroy(seed.gameObject);
